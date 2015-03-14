@@ -20,4 +20,19 @@ public class Sequences {
 	 * The sequence <code>public.app_user_id_seq</code>
 	 */
 	public static final org.jooq.Sequence<java.lang.Long> APP_USER_ID_SEQ = new org.jooq.impl.SequenceImpl<java.lang.Long>("app_user_id_seq", je.backit.jooq.Public.PUBLIC, org.jooq.impl.SQLDataType.BIGINT.nullable(false));
+
+	/**
+	 * The sequence <code>public.campaign_id_seq</code>
+	 */
+	public static final org.jooq.Sequence<java.lang.Long> CAMPAIGN_ID_SEQ = new org.jooq.impl.SequenceImpl<java.lang.Long>("campaign_id_seq", je.backit.jooq.Public.PUBLIC, org.jooq.impl.SQLDataType.BIGINT.nullable(false));
+
+	/**
+	 * The sequence <code>public.category_id_seq</code>
+	 */
+	public static final org.jooq.Sequence<java.lang.Long> CATEGORY_ID_SEQ = new org.jooq.impl.SequenceImpl<java.lang.Long>("category_id_seq", je.backit.jooq.Public.PUBLIC, org.jooq.impl.SQLDataType.BIGINT.nullable(false));
+
+	/**
+	 * The sequence <code>public.funding_id_seq</code>
+	 */
+	public static final org.jooq.Sequence<java.lang.Long> FUNDING_ID_SEQ = new org.jooq.impl.SequenceImpl<java.lang.Long>("funding_id_seq", je.backit.jooq.Public.PUBLIC, org.jooq.impl.SQLDataType.BIGINT.nullable(false));
 }

@@ -1,16 +1,40 @@
 package je.backit.entity;
 
+import java.math.BigDecimal;
+import java.time.Duration;
+import java.time.ZonedDateTime;
+import java.util.List;
+
 public class Campaign extends BaseEntity {
 
+  private Integer id;
   private String title;
   private String summary;
   private String description;
-  private CATEGORY categories;
+  private List<String> categories;
   private String hashtag;
   private String videoURI;
   private String imageURI;
   private String type;
-  private Integer duration;
+  private ZonedDateTime startDate;
+  private ZonedDateTime endDate;
+  private BigDecimal targetFunding;
+
+  public Integer getId() {
+    return id;
+  }
+
+  public void setId(Integer id) {
+    this.id = id;
+  }
+
+  public BigDecimal getTargetFunding() {
+    return targetFunding;
+  }
+
+  public void setTargetFunding(BigDecimal targetFunding) {
+    this.targetFunding = targetFunding;
+  }
 
   public String getTitle() {
     return title;
@@ -36,11 +60,11 @@ public class Campaign extends BaseEntity {
     this.description = description;
   }
 
-  public CATEGORY getCategories() {
+  public List<String> getCategories() {
     return categories;
   }
 
-  public void setCategories(CATEGORY categories) {
+  public void setCategories(List<String> categories) {
     this.categories = categories;
   }
 
@@ -76,12 +100,25 @@ public class Campaign extends BaseEntity {
     this.type = type;
   }
 
-  public Integer getDuration() {
-    return duration;
+  public Duration getDuration() {
+    return Duration.between(startDate, endDate);
   }
 
-  public void setDuration(Integer duration) {
-    this.duration = duration;
+  public void setStartDate(ZonedDateTime startDate) {
+    this.startDate = startDate;
   }
+
+  public void setEndDate(ZonedDateTime endDate) {
+    this.endDate = endDate;
+  }
+
+  public ZonedDateTime getStartDate() {
+    return startDate;
+  }
+
+  public ZonedDateTime getEndDate() {
+    return endDate;
+  }
+
 
 }
