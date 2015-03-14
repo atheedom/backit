@@ -1,9 +1,9 @@
 package je.backit.entity;
 
 import java.math.BigDecimal;
-import java.time.Duration;
 import java.time.ZonedDateTime;
 import java.util.List;
+import je.backit.utils.TimeLeft;
 
 public class Campaign extends BaseEntity {
 
@@ -100,10 +100,6 @@ public class Campaign extends BaseEntity {
     this.type = type;
   }
 
-  public Duration getDuration() {
-    return Duration.between(startDate, endDate);
-  }
-
   public void setStartDate(ZonedDateTime startDate) {
     this.startDate = startDate;
   }
@@ -120,5 +116,7 @@ public class Campaign extends BaseEntity {
     return endDate;
   }
 
-
+  public TimeLeft getTimeLeft() {
+    return new TimeLeft(ZonedDateTime.now(), endDate);
+  }
 }
