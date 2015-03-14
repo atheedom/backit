@@ -7,6 +7,7 @@ import javax.enterprise.context.RequestScoped;
 import javax.inject.Inject;
 
 import je.backit.entity.Campaign;
+import je.backit.jooq.tables.records.AppUserRecord;
 
 import org.jooq.DAO;
 
@@ -14,7 +15,7 @@ import org.jooq.DAO;
 public class CampaignService implements Service<Campaign, Integer> {
 
   @Inject
-  DAO<?, Campaign, ?> campaignDAO;
+  DAO<AppUserRecord, Campaign, Integer> campaignDAO;
 
   @Override
   public List<Campaign> getAll() {

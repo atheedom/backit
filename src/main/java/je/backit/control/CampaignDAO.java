@@ -1,26 +1,24 @@
 package je.backit.control;
 
-import java.math.BigDecimal;
-import java.sql.Timestamp;
-import java.time.Instant;
-import java.time.ZoneOffset;
-import java.time.ZonedDateTime;
-import java.util.ArrayList;
-import java.util.Collection;
 import static java.util.Collections.emptyList;
-import java.util.List;
-import java.util.Map;
-import java.util.UUID;
 import static java.util.stream.Collectors.toList;
-import javax.inject.Inject;
-
-import je.backit.entity.Campaign;
-import je.backit.entity.Category;
-import je.backit.jooq.JooqProvider;
-import je.backit.jooq.Tables;
 import static je.backit.jooq.Tables.CAMPAIGN;
 import static je.backit.jooq.Tables.CAMPAIGN_TAG;
 import static je.backit.jooq.Tables.CATEGORY;
+
+import java.math.BigDecimal;
+import java.sql.Timestamp;
+import java.time.ZoneOffset;
+import java.time.ZonedDateTime;
+import java.util.Collection;
+import java.util.List;
+import java.util.Map;
+import java.util.UUID;
+
+import javax.inject.Inject;
+
+import je.backit.entity.Campaign;
+import je.backit.jooq.JooqProvider;
 import je.backit.jooq.tables.records.AppUserRecord;
 
 import org.jooq.Configuration;
@@ -29,9 +27,6 @@ import org.jooq.DSLContext;
 import org.jooq.Field;
 import org.jooq.Record;
 import org.jooq.Record10;
-import org.jooq.Record2;
-import org.jooq.Record4;
-import org.jooq.Record9;
 import org.jooq.RecordMapper;
 import org.jooq.Result;
 import org.jooq.SQLDialect;

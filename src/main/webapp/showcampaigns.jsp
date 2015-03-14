@@ -11,12 +11,14 @@
 <body>
 	<c:forEach items="${campaigns}" var="campaign">
 		<c:out value="${campaign.title}" />
-		<c:out value="${campaign.categories}" />
-		<c:out value="${campaign.description}" />
-		<c:out value="${campaign.duration}" />
-		<c:out value="${campaign.hashtag}" />
-		<a href="<c:out value= "${campaign.imageURI}"/>" /><img src="${campaign.imageURI}"/> </a>
-		<c:out value="${campaign.summary}" />
+<%-- 		<c:out value="${campaign.categories}" /> --%>
+<%-- 		<c:out value="${campaign.description}" /> --%>
+<%-- 		<c:out value="${campaign.duration}" /> --%>
+<%-- 		<c:out value="${campaign.hashtag}" /> --%>
+<%-- 		<a href="<c:out value= "${campaign.imageURI}"/>" /><img src="${campaign.imageURI}"/> </a> --%>
+<%-- 		<c:out value="${campaign.summary}" /> --%>
+		
+
 </c:forEach>
 
 
