@@ -16,7 +16,7 @@ package je.backit.jooq.tables.records;
 @java.lang.SuppressWarnings({ "all", "unchecked", "rawtypes" })
 public class CampaignTagRecord extends org.jooq.impl.TableRecordImpl<je.backit.jooq.tables.records.CampaignTagRecord> implements org.jooq.Record2<java.lang.Integer, java.lang.Integer> {
 
-	private static final long serialVersionUID = -1283023919;
+	private static final long serialVersionUID = 932296979;
 
 	/**
 	 * Setter for <code>public.campaign_tag.campaign_id</code>.
@@ -34,17 +34,17 @@ public class CampaignTagRecord extends org.jooq.impl.TableRecordImpl<je.backit.j
 	}
 
 	/**
-	 * Setter for <code>public.campaign_tag.category_id</code>.
+	 * Setter for <code>public.campaign_tag.tag_id</code>.
 	 */
-	public CampaignTagRecord setCategoryId(java.lang.Integer value) {
+	public CampaignTagRecord setTagId(java.lang.Integer value) {
 		setValue(1, value);
 		return this;
 	}
 
 	/**
-	 * Getter for <code>public.campaign_tag.category_id</code>.
+	 * Getter for <code>public.campaign_tag.tag_id</code>.
 	 */
-	public java.lang.Integer getCategoryId() {
+	public java.lang.Integer getTagId() {
 		return (java.lang.Integer) getValue(1);
 	}
 
@@ -81,7 +81,7 @@ public class CampaignTagRecord extends org.jooq.impl.TableRecordImpl<je.backit.j
 	 */
 	@Override
 	public org.jooq.Field<java.lang.Integer> field2() {
-		return je.backit.jooq.tables.CampaignTag.CAMPAIGN_TAG.CATEGORY_ID;
+		return je.backit.jooq.tables.CampaignTag.CAMPAIGN_TAG.TAG_ID;
 	}
 
 	/**
@@ -97,7 +97,7 @@ public class CampaignTagRecord extends org.jooq.impl.TableRecordImpl<je.backit.j
 	 */
 	@Override
 	public java.lang.Integer value2() {
-		return getCategoryId();
+		return getTagId();
 	}
 
 	/**
@@ -114,7 +114,7 @@ public class CampaignTagRecord extends org.jooq.impl.TableRecordImpl<je.backit.j
 	 */
 	@Override
 	public CampaignTagRecord value2(java.lang.Integer value) {
-		setCategoryId(value);
+		setTagId(value);
 		return this;
 	}
 
@@ -140,10 +140,10 @@ public class CampaignTagRecord extends org.jooq.impl.TableRecordImpl<je.backit.j
 	/**
 	 * Create a detached, initialised CampaignTagRecord
 	 */
-	public CampaignTagRecord(java.lang.Integer campaignId, java.lang.Integer categoryId) {
+	public CampaignTagRecord(java.lang.Integer campaignId, java.lang.Integer tagId) {
 		super(je.backit.jooq.tables.CampaignTag.CAMPAIGN_TAG);
 
 		setValue(0, campaignId);
-		setValue(1, categoryId);
+		setValue(1, tagId);
 	}
 }

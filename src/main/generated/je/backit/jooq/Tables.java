@@ -37,17 +37,17 @@ public class Tables {
 	public static final je.backit.jooq.tables.CampaignTag CAMPAIGN_TAG = je.backit.jooq.tables.CampaignTag.CAMPAIGN_TAG;
 
 	/**
-	 * The table public.campaign_view
+	 * The table public.campaign_viewer
 	 */
-	public static final je.backit.jooq.tables.CampaignView CAMPAIGN_VIEW = je.backit.jooq.tables.CampaignView.CAMPAIGN_VIEW;
-
-	/**
-	 * The table public.category
-	 */
-	public static final je.backit.jooq.tables.Category CATEGORY = je.backit.jooq.tables.Category.CATEGORY;
+	public static final je.backit.jooq.tables.CampaignViewer CAMPAIGN_VIEWER = je.backit.jooq.tables.CampaignViewer.CAMPAIGN_VIEWER;
 
 	/**
 	 * The table public.funding
 	 */
 	public static final je.backit.jooq.tables.Funding FUNDING = je.backit.jooq.tables.Funding.FUNDING;
+
+	/**
+	 * The table public.tag
+	 */
+	public static final je.backit.jooq.tables.Tag TAG = je.backit.jooq.tables.Tag.TAG;
 }

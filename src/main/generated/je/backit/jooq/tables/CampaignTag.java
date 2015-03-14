@@ -16,7 +16,7 @@ package je.backit.jooq.tables;
 @java.lang.SuppressWarnings({ "all", "unchecked", "rawtypes" })
 public class CampaignTag extends org.jooq.impl.TableImpl<je.backit.jooq.tables.records.CampaignTagRecord> {
 
-	private static final long serialVersionUID = -268327939;
+	private static final long serialVersionUID = -633166733;
 
 	/**
 	 * The reference instance of <code>public.campaign_tag</code>
@@ -37,9 +37,9 @@ public class CampaignTag extends org.jooq.impl.TableImpl<je.backit.jooq.tables.r
 	public final org.jooq.TableField<je.backit.jooq.tables.records.CampaignTagRecord, java.lang.Integer> CAMPAIGN_ID = createField("campaign_id", org.jooq.impl.SQLDataType.INTEGER, this, "");
 
 	/**
-	 * The column <code>public.campaign_tag.category_id</code>.
+	 * The column <code>public.campaign_tag.tag_id</code>.
 	 */
-	public final org.jooq.TableField<je.backit.jooq.tables.records.CampaignTagRecord, java.lang.Integer> CATEGORY_ID = createField("category_id", org.jooq.impl.SQLDataType.INTEGER, this, "");
+	public final org.jooq.TableField<je.backit.jooq.tables.records.CampaignTagRecord, java.lang.Integer> TAG_ID = createField("tag_id", org.jooq.impl.SQLDataType.INTEGER, this, "");
 
 	/**
 	 * Create a <code>public.campaign_tag</code> table reference
@@ -68,7 +68,7 @@ public class CampaignTag extends org.jooq.impl.TableImpl<je.backit.jooq.tables.r
 	 */
 	@Override
 	public java.util.List<org.jooq.ForeignKey<je.backit.jooq.tables.records.CampaignTagRecord, ?>> getReferences() {
-		return java.util.Arrays.<org.jooq.ForeignKey<je.backit.jooq.tables.records.CampaignTagRecord, ?>>asList(je.backit.jooq.Keys.CAMPAIGN_TAG__CAMPAIGN_TAG_CAMPAIGN_ID_FKEY, je.backit.jooq.Keys.CAMPAIGN_TAG__CAMPAIGN_TAG_CATEGORY_ID_FKEY);
+		return java.util.Arrays.<org.jooq.ForeignKey<je.backit.jooq.tables.records.CampaignTagRecord, ?>>asList(je.backit.jooq.Keys.CAMPAIGN_TAG__CAMPAIGN_TAG_CAMPAIGN_ID_FKEY, je.backit.jooq.Keys.CAMPAIGN_TAG__CAMPAIGN_TAG_TAG_ID_FKEY);
 	}
 
 	/**
