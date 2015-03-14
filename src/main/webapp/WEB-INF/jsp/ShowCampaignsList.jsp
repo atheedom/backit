@@ -24,12 +24,12 @@
         <meta name="theme-color" content="#fff">
         <!--[if IEMobile]><meta http-equiv="cleartype" content="on"><![endif]-->
 
-        <link href="css/main.css" rel="stylesheet">
-        <link rel="shortcut icon" href="ico/favicon.ico">
-        <link rel="apple-touch-icon" href="ico/apple-touch-icon-57-precomposed.png">
-        <link rel="apple-touch-icon" sizes="114x114" href="ico/apple-touch-icon-114-precomposed.png">
-        <link rel="apple-touch-icon" sizes="72x72" href="ico/apple-touch-icon-72-precomposed.png">
-        <link rel="apple-touch-icon" sizes="144x144" href="ico/apple-touch-icon-144-precomposed.png">
+        <link href="${pageContext.request.contextPath}/css/main.css" rel="stylesheet">
+        <link rel="shortcut icon" href="${pageContext.request.contextPath}/ico/favicon.ico">
+        <link rel="apple-touch-icon" href="${pageContext.request.contextPath}/ico/apple-touch-icon-57-precomposed.png">
+        <link rel="apple-touch-icon" sizes="114x114" href="${pageContext.request.contextPath}/ico/apple-touch-icon-114-precomposed.png">
+        <link rel="apple-touch-icon" sizes="72x72" href="${pageContext.request.contextPath}/ico/apple-touch-icon-72-precomposed.png">
+        <link rel="apple-touch-icon" sizes="144x144" href="${pageContext.request.contextPath}/ico/apple-touch-icon-144-precomposed.png">
 
         <script>
           (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
@@ -48,21 +48,14 @@
 
 <br><br><br>
 
-	<c:forEach items="${campaigns}" var="campaign">
-<%-- 		<c:out value="${campaign.title}" /> --%>
-<%-- 		<c:out value="${campaign.categories}" /> --%>
-<%-- 		<c:out value="${campaign.description}" /> --%>
-<%-- 		<c:out value="${campaign.duration}" /> --%>
-<%-- 		<c:out value="${campaign.hashtag}" /> --%>
-<%-- 		<a href="<c:out value= "${campaign.imageURI}"/>" /><img src="${campaign.imageURI}"/> </a> --%>
-<%-- 		<c:out value="${campaign.summary}" /> --%>
-		
+
+
 
         <article class="section">
             <section class="listings">
-                
+              	<c:forEach items="${campaigns}" var="campaign">  
                 <div class="campaign-listing">
-                    <a href=""><img src="img/${campaign.imageURI}" alt=""></a>
+                    <a href=""><img src="${pageContext.request.contextPath}/img/${campaign.imageURI}" alt=""></a>
                     <h3><a href="">${campaign.title}</a></h3>
                     <p><a href="">${campaign.summary}</a></p>
                     <div class="campaign-funding">
@@ -74,11 +67,12 @@
                             <li><strong>${campaign.noBackers}</strong> <span>Backers</span></li>
                         </ul>
                     </div>
-                </div>  
+                </div> 
+                </c:forEach>
+                 
             </section>
         </article>
 
-</c:forEach>
 
 
 

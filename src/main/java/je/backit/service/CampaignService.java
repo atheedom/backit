@@ -13,11 +13,11 @@ import je.backit.entity.Campaign;
 @RequestScoped
 public class CampaignService implements Service<Campaign, Integer> {
 
-  @Inject
-  CampaignDAO campaignDAO;
-  
 //  @Inject
-//  MOCKCampaignDAO campaignDAO;
+//  CampaignDAO campaignDAO;
+  
+  @Inject
+  MOCKCampaignDAO campaignDAO;
 
   @Override
   public List<Campaign> getAll() {
