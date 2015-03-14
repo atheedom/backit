@@ -24,6 +24,7 @@ public class Keys {
 	public static final org.jooq.Identity<je.backit.jooq.tables.records.AppUserRecord, java.lang.Integer> IDENTITY_APP_USER = Identities0.IDENTITY_APP_USER;
 	public static final org.jooq.Identity<je.backit.jooq.tables.records.CampaignRecord, java.lang.Integer> IDENTITY_CAMPAIGN = Identities0.IDENTITY_CAMPAIGN;
 	public static final org.jooq.Identity<je.backit.jooq.tables.records.FundingRecord, java.lang.Integer> IDENTITY_FUNDING = Identities0.IDENTITY_FUNDING;
+	public static final org.jooq.Identity<je.backit.jooq.tables.records.RewardRecord, java.lang.Integer> IDENTITY_REWARD = Identities0.IDENTITY_REWARD;
 	public static final org.jooq.Identity<je.backit.jooq.tables.records.TagRecord, java.lang.Integer> IDENTITY_TAG = Identities0.IDENTITY_TAG;
 
 	// -------------------------------------------------------------------------
@@ -34,6 +35,7 @@ public class Keys {
 	public static final org.jooq.UniqueKey<je.backit.jooq.tables.records.AppUserRecord> APP_USER_USERNAME_KEY = UniqueKeys0.APP_USER_USERNAME_KEY;
 	public static final org.jooq.UniqueKey<je.backit.jooq.tables.records.CampaignRecord> CAMPAIGN_PKEY = UniqueKeys0.CAMPAIGN_PKEY;
 	public static final org.jooq.UniqueKey<je.backit.jooq.tables.records.FundingRecord> FUNDING_PKEY = UniqueKeys0.FUNDING_PKEY;
+	public static final org.jooq.UniqueKey<je.backit.jooq.tables.records.RewardRecord> REWARD_PKEY = UniqueKeys0.REWARD_PKEY;
 	public static final org.jooq.UniqueKey<je.backit.jooq.tables.records.TagRecord> TAG_PKEY = UniqueKeys0.TAG_PKEY;
 
 	// -------------------------------------------------------------------------
@@ -42,6 +44,8 @@ public class Keys {
 
 	public static final org.jooq.ForeignKey<je.backit.jooq.tables.records.CampaignOwnerRecord, je.backit.jooq.tables.records.CampaignRecord> CAMPAIGN_OWNER__CAMPAIGN_OWNER_CAMPAIGN_ID_FKEY = ForeignKeys0.CAMPAIGN_OWNER__CAMPAIGN_OWNER_CAMPAIGN_ID_FKEY;
 	public static final org.jooq.ForeignKey<je.backit.jooq.tables.records.CampaignOwnerRecord, je.backit.jooq.tables.records.AppUserRecord> CAMPAIGN_OWNER__CAMPAIGN_OWNER_USER_ID_FKEY = ForeignKeys0.CAMPAIGN_OWNER__CAMPAIGN_OWNER_USER_ID_FKEY;
+	public static final org.jooq.ForeignKey<je.backit.jooq.tables.records.CampaignRewardRecord, je.backit.jooq.tables.records.CampaignRecord> CAMPAIGN_REWARD__CAMPAIGN_REWARD_CAMPAIGN_ID_FKEY = ForeignKeys0.CAMPAIGN_REWARD__CAMPAIGN_REWARD_CAMPAIGN_ID_FKEY;
+	public static final org.jooq.ForeignKey<je.backit.jooq.tables.records.CampaignRewardRecord, je.backit.jooq.tables.records.RewardRecord> CAMPAIGN_REWARD__CAMPAIGN_REWARD_REWARD_ID_FKEY = ForeignKeys0.CAMPAIGN_REWARD__CAMPAIGN_REWARD_REWARD_ID_FKEY;
 	public static final org.jooq.ForeignKey<je.backit.jooq.tables.records.CampaignTagRecord, je.backit.jooq.tables.records.CampaignRecord> CAMPAIGN_TAG__CAMPAIGN_TAG_CAMPAIGN_ID_FKEY = ForeignKeys0.CAMPAIGN_TAG__CAMPAIGN_TAG_CAMPAIGN_ID_FKEY;
 	public static final org.jooq.ForeignKey<je.backit.jooq.tables.records.CampaignTagRecord, je.backit.jooq.tables.records.TagRecord> CAMPAIGN_TAG__CAMPAIGN_TAG_TAG_ID_FKEY = ForeignKeys0.CAMPAIGN_TAG__CAMPAIGN_TAG_TAG_ID_FKEY;
 	public static final org.jooq.ForeignKey<je.backit.jooq.tables.records.CampaignViewerRecord, je.backit.jooq.tables.records.CampaignRecord> CAMPAIGN_VIEWER__CAMPAIGN_VIEWER_CAMPAIGN_ID_FKEY = ForeignKeys0.CAMPAIGN_VIEWER__CAMPAIGN_VIEWER_CAMPAIGN_ID_FKEY;
@@ -57,6 +61,7 @@ public class Keys {
 		public static org.jooq.Identity<je.backit.jooq.tables.records.AppUserRecord, java.lang.Integer> IDENTITY_APP_USER = createIdentity(je.backit.jooq.tables.AppUser.APP_USER, je.backit.jooq.tables.AppUser.APP_USER.ID);
 		public static org.jooq.Identity<je.backit.jooq.tables.records.CampaignRecord, java.lang.Integer> IDENTITY_CAMPAIGN = createIdentity(je.backit.jooq.tables.Campaign.CAMPAIGN, je.backit.jooq.tables.Campaign.CAMPAIGN.ID);
 		public static org.jooq.Identity<je.backit.jooq.tables.records.FundingRecord, java.lang.Integer> IDENTITY_FUNDING = createIdentity(je.backit.jooq.tables.Funding.FUNDING, je.backit.jooq.tables.Funding.FUNDING.ID);
+		public static org.jooq.Identity<je.backit.jooq.tables.records.RewardRecord, java.lang.Integer> IDENTITY_REWARD = createIdentity(je.backit.jooq.tables.Reward.REWARD, je.backit.jooq.tables.Reward.REWARD.ID);
 		public static org.jooq.Identity<je.backit.jooq.tables.records.TagRecord, java.lang.Integer> IDENTITY_TAG = createIdentity(je.backit.jooq.tables.Tag.TAG, je.backit.jooq.tables.Tag.TAG.ID);
 	}
 
@@ -65,12 +70,15 @@ public class Keys {
 		public static final org.jooq.UniqueKey<je.backit.jooq.tables.records.AppUserRecord> APP_USER_USERNAME_KEY = createUniqueKey(je.backit.jooq.tables.AppUser.APP_USER, je.backit.jooq.tables.AppUser.APP_USER.USERNAME);
 		public static final org.jooq.UniqueKey<je.backit.jooq.tables.records.CampaignRecord> CAMPAIGN_PKEY = createUniqueKey(je.backit.jooq.tables.Campaign.CAMPAIGN, je.backit.jooq.tables.Campaign.CAMPAIGN.ID);
 		public static final org.jooq.UniqueKey<je.backit.jooq.tables.records.FundingRecord> FUNDING_PKEY = createUniqueKey(je.backit.jooq.tables.Funding.FUNDING, je.backit.jooq.tables.Funding.FUNDING.ID);
+		public static final org.jooq.UniqueKey<je.backit.jooq.tables.records.RewardRecord> REWARD_PKEY = createUniqueKey(je.backit.jooq.tables.Reward.REWARD, je.backit.jooq.tables.Reward.REWARD.ID);
 		public static final org.jooq.UniqueKey<je.backit.jooq.tables.records.TagRecord> TAG_PKEY = createUniqueKey(je.backit.jooq.tables.Tag.TAG, je.backit.jooq.tables.Tag.TAG.ID);
 	}
 
 	private static class ForeignKeys0 extends org.jooq.impl.AbstractKeys {
 		public static final org.jooq.ForeignKey<je.backit.jooq.tables.records.CampaignOwnerRecord, je.backit.jooq.tables.records.CampaignRecord> CAMPAIGN_OWNER__CAMPAIGN_OWNER_CAMPAIGN_ID_FKEY = createForeignKey(je.backit.jooq.Keys.CAMPAIGN_PKEY, je.backit.jooq.tables.CampaignOwner.CAMPAIGN_OWNER, je.backit.jooq.tables.CampaignOwner.CAMPAIGN_OWNER.CAMPAIGN_ID);
 		public static final org.jooq.ForeignKey<je.backit.jooq.tables.records.CampaignOwnerRecord, je.backit.jooq.tables.records.AppUserRecord> CAMPAIGN_OWNER__CAMPAIGN_OWNER_USER_ID_FKEY = createForeignKey(je.backit.jooq.Keys.APP_USER_PKEY, je.backit.jooq.tables.CampaignOwner.CAMPAIGN_OWNER, je.backit.jooq.tables.CampaignOwner.CAMPAIGN_OWNER.USER_ID);
+		public static final org.jooq.ForeignKey<je.backit.jooq.tables.records.CampaignRewardRecord, je.backit.jooq.tables.records.CampaignRecord> CAMPAIGN_REWARD__CAMPAIGN_REWARD_CAMPAIGN_ID_FKEY = createForeignKey(je.backit.jooq.Keys.CAMPAIGN_PKEY, je.backit.jooq.tables.CampaignReward.CAMPAIGN_REWARD, je.backit.jooq.tables.CampaignReward.CAMPAIGN_REWARD.CAMPAIGN_ID);
+		public static final org.jooq.ForeignKey<je.backit.jooq.tables.records.CampaignRewardRecord, je.backit.jooq.tables.records.RewardRecord> CAMPAIGN_REWARD__CAMPAIGN_REWARD_REWARD_ID_FKEY = createForeignKey(je.backit.jooq.Keys.REWARD_PKEY, je.backit.jooq.tables.CampaignReward.CAMPAIGN_REWARD, je.backit.jooq.tables.CampaignReward.CAMPAIGN_REWARD.REWARD_ID);
 		public static final org.jooq.ForeignKey<je.backit.jooq.tables.records.CampaignTagRecord, je.backit.jooq.tables.records.CampaignRecord> CAMPAIGN_TAG__CAMPAIGN_TAG_CAMPAIGN_ID_FKEY = createForeignKey(je.backit.jooq.Keys.CAMPAIGN_PKEY, je.backit.jooq.tables.CampaignTag.CAMPAIGN_TAG, je.backit.jooq.tables.CampaignTag.CAMPAIGN_TAG.CAMPAIGN_ID);
 		public static final org.jooq.ForeignKey<je.backit.jooq.tables.records.CampaignTagRecord, je.backit.jooq.tables.records.TagRecord> CAMPAIGN_TAG__CAMPAIGN_TAG_TAG_ID_FKEY = createForeignKey(je.backit.jooq.Keys.TAG_PKEY, je.backit.jooq.tables.CampaignTag.CAMPAIGN_TAG, je.backit.jooq.tables.CampaignTag.CAMPAIGN_TAG.TAG_ID);
 		public static final org.jooq.ForeignKey<je.backit.jooq.tables.records.CampaignViewerRecord, je.backit.jooq.tables.records.CampaignRecord> CAMPAIGN_VIEWER__CAMPAIGN_VIEWER_CAMPAIGN_ID_FKEY = createForeignKey(je.backit.jooq.Keys.CAMPAIGN_PKEY, je.backit.jooq.tables.CampaignViewer.CAMPAIGN_VIEWER, je.backit.jooq.tables.CampaignViewer.CAMPAIGN_VIEWER.CAMPAIGN_ID);

@@ -32,6 +32,11 @@ public class Tables {
 	public static final je.backit.jooq.tables.CampaignOwner CAMPAIGN_OWNER = je.backit.jooq.tables.CampaignOwner.CAMPAIGN_OWNER;
 
 	/**
+	 * The table public.campaign_reward
+	 */
+	public static final je.backit.jooq.tables.CampaignReward CAMPAIGN_REWARD = je.backit.jooq.tables.CampaignReward.CAMPAIGN_REWARD;
+
+	/**
 	 * The table public.campaign_tag
 	 */
 	public static final je.backit.jooq.tables.CampaignTag CAMPAIGN_TAG = je.backit.jooq.tables.CampaignTag.CAMPAIGN_TAG;
@@ -45,6 +50,11 @@ public class Tables {
 	 * The table public.funding
 	 */
 	public static final je.backit.jooq.tables.Funding FUNDING = je.backit.jooq.tables.Funding.FUNDING;
+
+	/**
+	 * The table public.reward
+	 */
+	public static final je.backit.jooq.tables.Reward REWARD = je.backit.jooq.tables.Reward.REWARD;
 
 	/**
 	 * The table public.tag

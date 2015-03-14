@@ -16,7 +16,7 @@ package je.backit.jooq;
 @java.lang.SuppressWarnings({ "all", "unchecked", "rawtypes" })
 public class Public extends org.jooq.impl.SchemaImpl {
 
-	private static final long serialVersionUID = -816680325;
+	private static final long serialVersionUID = -641450748;
 
 	/**
 	 * The reference instance of <code>public</code>
@@ -42,6 +42,7 @@ public class Public extends org.jooq.impl.SchemaImpl {
 			je.backit.jooq.Sequences.APP_USER_ID_SEQ,
 			je.backit.jooq.Sequences.CAMPAIGN_ID_SEQ,
 			je.backit.jooq.Sequences.FUNDING_ID_SEQ,
+			je.backit.jooq.Sequences.REWARD_ID_SEQ,
 			je.backit.jooq.Sequences.TAG_ID_SEQ);
 	}
 
@@ -57,9 +58,11 @@ public class Public extends org.jooq.impl.SchemaImpl {
 			je.backit.jooq.tables.AppUser.APP_USER,
 			je.backit.jooq.tables.Campaign.CAMPAIGN,
 			je.backit.jooq.tables.CampaignOwner.CAMPAIGN_OWNER,
+			je.backit.jooq.tables.CampaignReward.CAMPAIGN_REWARD,
 			je.backit.jooq.tables.CampaignTag.CAMPAIGN_TAG,
 			je.backit.jooq.tables.CampaignViewer.CAMPAIGN_VIEWER,
 			je.backit.jooq.tables.Funding.FUNDING,
+			je.backit.jooq.tables.Reward.REWARD,
 			je.backit.jooq.tables.Tag.TAG);
 	}
 }
