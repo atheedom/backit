@@ -20,6 +20,10 @@ public class Campaign extends BaseEntity {
   private ZonedDateTime startDate;
   private ZonedDateTime endDate;
   private BigDecimal targetFunding;
+  
+  private String timeRemaining;
+  private BigDecimal backed;
+  private Integer noBackers;
 
   public Integer getId() {
     return id;
@@ -117,6 +121,33 @@ public class Campaign extends BaseEntity {
     return endDate;
   }
 
+  
+  
+  public String getTimeRemaining() {
+    return timeRemaining;
+  }
+
+  public void setTimeRemaining(String timeRemaining) {
+    this.timeRemaining = timeRemaining;
+  }
+
+  public BigDecimal getBacked() {
+    return backed;
+  }
+
+  public void setBacked(BigDecimal backed) {
+    this.backed = backed;
+  }
+
+  public Integer getNoBackers() {
+    return noBackers;
+  }
+
+  public void setNoBackers(Integer noBackers) {
+    this.noBackers = noBackers;
+  }
+
+  
   public TimeLeft getTimeLeft() {
     return new TimeLeft(ZonedDateTime.now(), endDate);
   }
