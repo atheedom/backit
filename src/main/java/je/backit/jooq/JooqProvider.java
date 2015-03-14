@@ -8,8 +8,6 @@ package je.backit.jooq;
 import javax.enterprise.context.RequestScoped;
 import javax.enterprise.inject.Instance;
 import javax.inject.Inject;
-import javax.ws.rs.core.Context;
-import javax.ws.rs.core.UriInfo;
 import org.jooq.DSLContext;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -24,6 +22,9 @@ public class JooqProvider {
   private @JooqTest @Inject Instance<DSLContext> sqlTestProvider;
 
   public DSLContext sql() {
+    return sqlProvider.get();
+  }
+  public DSLContext sqlTest() {
     return sqlTestProvider.get();
   }
 }

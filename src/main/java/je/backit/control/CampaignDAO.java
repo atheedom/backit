@@ -14,8 +14,8 @@ import je.backit.entity.Campaign;
 import je.backit.jooq.JooqProvider;
 import static je.backit.jooq.Tables.CAMPAIGN;
 import static je.backit.jooq.Tables.CAMPAIGN_TAG;
-import static je.backit.jooq.Tables.CATEGORY;
 import static je.backit.jooq.Tables.FUNDING;
+import static je.backit.jooq.Tables.TAG;
 import je.backit.jooq.tables.records.CampaignRecord;
 import je.backit.jooq.tables.records.CampaignTagRecord;
 import org.jooq.Condition;
@@ -62,7 +62,7 @@ public class CampaignDAO extends AbstractDAO<CampaignRecord, Campaign, Integer> 
     List<String> tags = c.getCategories();
     if (tags.isEmpty()) return;
 
-    Map<String, Integer> allTags = sql.select(CATEGORY.CATEGORY_, CATEGORY.ID).from(CATEGORY).fetchMap(CATEGORY.CATEGORY_, CATEGORY.ID);
+    Map<String, Integer> allTags = sql.select(TAG.TAG_, TAG.ID).from(TAG).fetchMap(TAG.TAG_, TAG.ID);
 
     for (String tag : tags) {
       CampaignTagRecord t = new CampaignTagRecord(r.getId(), allTags.get(tag));
@@ -80,11 +80,11 @@ public class CampaignDAO extends AbstractDAO<CampaignRecord, Campaign, Integer> 
     if (!campaign.isPresent()) return null;
 
     List<String> tags = sql
-            .select(CATEGORY.CATEGORY_)
-            .from(CAMPAIGN_TAG).join(CATEGORY)
-            .on(CATEGORY.ID.eq(CAMPAIGN_TAG.CATEGORY_ID))
+            .select(TAG.TAG_)
+            .from(CAMPAIGN_TAG).join(TAG)
+            .on(TAG.ID.eq(CAMPAIGN_TAG.TAG_ID))
             .where(CAMPAIGN_TAG.CAMPAIGN_ID.eq(campaignId))
-            .fetch(CATEGORY.CATEGORY_);
+            .fetch(TAG.TAG_);
 
     campaign.get().setCategories(tags);
 
@@ -98,10 +98,10 @@ public class CampaignDAO extends AbstractDAO<CampaignRecord, Campaign, Integer> 
             .map(CampaignDAO::mapFromRecord).collect(toList());
 
     Map<Integer, List<String>> tagsPerCampaign = sql
-            .select(CAMPAIGN_TAG.CAMPAIGN_ID, CATEGORY.CATEGORY_)
-            .from(CAMPAIGN_TAG).join(CATEGORY)
-            .on(CATEGORY.ID.eq(CAMPAIGN_TAG.CATEGORY_ID))
-            .fetchGroups(CAMPAIGN_TAG.CAMPAIGN_ID, CATEGORY.CATEGORY_);
+            .select(CAMPAIGN_TAG.CAMPAIGN_ID, TAG.TAG_)
+            .from(CAMPAIGN_TAG).join(TAG)
+            .on(TAG.ID.eq(CAMPAIGN_TAG.TAG_ID))
+            .fetchGroups(CAMPAIGN_TAG.CAMPAIGN_ID, TAG.TAG_);
 
     for (Campaign c : campaigns) {
       List<String> categories = tagsPerCampaign.getOrDefault(c.getId(),
