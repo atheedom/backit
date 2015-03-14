@@ -13,7 +13,7 @@ public class LoginRedirectAction implements Action {
     // Obtain data from database
     
     
-    return "/login.jsp";
+    return "login";
   }
 
 }

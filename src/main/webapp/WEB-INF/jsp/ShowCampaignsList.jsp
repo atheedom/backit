@@ -46,18 +46,13 @@
 <body>
 <jsp:include page="header.jsp"/>
 
-<br><br><br>
-
-
-
-
         <article class="section">
             <section class="listings">
               	<c:forEach items="${campaigns}" var="campaign">  
                 <div class="campaign-listing">
                     <a href=""><img src="${pageContext.request.contextPath}/img/${campaign.imageURI}" alt=""></a>
-                    <h3><a href="">${campaign.title}</a></h3>
-                    <p><a href="">${campaign.summary}</a></p>
+                    <h3><a href="${pageContext.request.contextPath}/v1/campaigns/details/?campaignId=${campaign.id}">${campaign.title}</a></h3>
+                    <p><a href="${pageContext.request.contextPath}/">${campaign.summary}</a></p>
                     <div class="campaign-funding">
                         <progress value="120" max="1000"></progress>
                         <ul>
@@ -72,9 +67,6 @@
                  
             </section>
         </article>
-
-
-
 
         <!-- Home Section -->
         <article class="section white-bg">
@@ -116,7 +108,6 @@
         </article>
         <!-- Project Section -->
         
-<br><br><br>
 
 <jsp:include page="footer.jsp"/>
 
