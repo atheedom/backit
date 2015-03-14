@@ -24,7 +24,7 @@
         <meta name="theme-color" content="#fff">
         <!--[if IEMobile]><meta http-equiv="cleartype" content="on"><![endif]-->
 
-        <link href="${pageContext.request.contextPath}/css/main.css" rel="stylesheet">
+        <link href="/css/main.css" rel="stylesheet">
         <link rel="shortcut icon" href="${pageContext.request.contextPath}/ico/favicon.ico">
         <link rel="apple-touch-icon" href="${pageContext.request.contextPath}/ico/apple-touch-icon-57-precomposed.png">
         <link rel="apple-touch-icon" sizes="114x114" href="${pageContext.request.contextPath}/ico/apple-touch-icon-114-precomposed.png">
