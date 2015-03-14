@@ -13,11 +13,15 @@ import javax.inject.Inject;
 import je.backit.entity.Campaign;
 import je.backit.jooq.JooqProvider;
 import static je.backit.jooq.Tables.CAMPAIGN;
+import static je.backit.jooq.Tables.CAMPAIGN_REWARD;
 import static je.backit.jooq.Tables.CAMPAIGN_TAG;
-import static je.backit.jooq.Tables.CATEGORY;
 import static je.backit.jooq.Tables.FUNDING;
+import static je.backit.jooq.Tables.REWARD;
+import static je.backit.jooq.Tables.TAG;
 import je.backit.jooq.tables.records.CampaignRecord;
+import je.backit.jooq.tables.records.CampaignRewardRecord;
 import je.backit.jooq.tables.records.CampaignTagRecord;
+import je.backit.jooq.tables.records.RewardRecord;
 import org.jooq.Condition;
 import org.jooq.DSLContext;
 import org.jooq.Record;
@@ -62,33 +66,64 @@ public class CampaignDAO extends AbstractDAO<CampaignRecord, Campaign, Integer> 
     List<String> tags = c.getCategories();
     if (tags.isEmpty()) return;
 
-    Map<String, Integer> allTags = sql.select(CATEGORY.CATEGORY_, CATEGORY.ID).from(CATEGORY).fetchMap(CATEGORY.CATEGORY_, CATEGORY.ID);
+    Map<String, Integer> allTags = sql.select(TAG.TAG_, TAG.ID).from(TAG).fetchMap(TAG.TAG_, TAG.ID);
 
     for (String tag : tags) {
       CampaignTagRecord t = new CampaignTagRecord(r.getId(), allTags.get(tag));
       t.attach(sql.configuration());
       t.insert();
     }
+
+    for (RewardRecord reward : c.getRewards()) {
+      addReward(sql, reward, r.getId());
+    }
+  }
+
+  public Campaign addReward(Campaign c, RewardRecord reward) {
+    DSLContext sql = jooq.sql();
+    addReward(sql, reward, c.getId());
+    return findById(c.getId());
+  }
+
+  private void addReward(DSLContext sql, RewardRecord reward, Integer campaignId) {
+    insertInto(sql, REWARD, reward);
+    CampaignRewardRecord crr = new CampaignRewardRecord(campaignId, reward.getId());
+    crr.attach(sql.configuration());
+    crr.insert();
   }
 
   @Override
   public Campaign findById(Integer campaignId) {
     DSLContext sql = jooq.sql();
 
-    Optional<Campaign> campaign = getCampaignsById(sql, campaignId).stream()
+    Optional<Campaign> campaignOp = getCampaignsById(sql, campaignId).stream()
             .map(CampaignDAO::mapFromRecord).findAny();
-    if (!campaign.isPresent()) return null;
+    if (!campaignOp.isPresent()) return null;
+
+    Campaign campaign = campaignOp.get();
 
     List<String> tags = sql
-            .select(CATEGORY.CATEGORY_)
-            .from(CAMPAIGN_TAG).join(CATEGORY)
-            .on(CATEGORY.ID.eq(CAMPAIGN_TAG.CATEGORY_ID))
+            .select(TAG.TAG_)
+            .from(CAMPAIGN_TAG).join(TAG)
+            .on(TAG.ID.eq(CAMPAIGN_TAG.TAG_ID))
             .where(CAMPAIGN_TAG.CAMPAIGN_ID.eq(campaignId))
-            .fetch(CATEGORY.CATEGORY_);
+            .fetch(TAG.TAG_);
 
-    campaign.get().setCategories(tags);
+    campaign.setCategories(tags);
 
-    return campaign.get();
+    List<RewardRecord> rewards = sql
+            .selectFrom(REWARD)
+            .where(REWARD.ID.in(
+                            sql.select(CAMPAIGN_REWARD.REWARD_ID)
+                            .from(CAMPAIGN_REWARD)
+                            .where(CAMPAIGN_REWARD.REWARD_ID.eq(CAMPAIGN_REWARD.REWARD_ID)))
+            ).fetch();
+    campaign.setRewards(rewards);
+
+    campaign.setBacked(getAmountFunded(campaignId));
+    campaign.setNoBackers(getNumberOfDonors(campaignId));
+
+    return campaign;
   }
 
   @Override
@@ -98,10 +133,10 @@ public class CampaignDAO extends AbstractDAO<CampaignRecord, Campaign, Integer> 
             .map(CampaignDAO::mapFromRecord).collect(toList());
 
     Map<Integer, List<String>> tagsPerCampaign = sql
-            .select(CAMPAIGN_TAG.CAMPAIGN_ID, CATEGORY.CATEGORY_)
-            .from(CAMPAIGN_TAG).join(CATEGORY)
-            .on(CATEGORY.ID.eq(CAMPAIGN_TAG.CATEGORY_ID))
-            .fetchGroups(CAMPAIGN_TAG.CAMPAIGN_ID, CATEGORY.CATEGORY_);
+            .select(CAMPAIGN_TAG.CAMPAIGN_ID, TAG.TAG_)
+            .from(CAMPAIGN_TAG).join(TAG)
+            .on(TAG.ID.eq(CAMPAIGN_TAG.TAG_ID))
+            .fetchGroups(CAMPAIGN_TAG.CAMPAIGN_ID, TAG.TAG_);
 
     for (Campaign c : campaigns) {
       List<String> categories = tagsPerCampaign.getOrDefault(c.getId(),
