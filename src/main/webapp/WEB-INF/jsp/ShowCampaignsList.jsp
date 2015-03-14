@@ -9,6 +9,11 @@
 <title>Show Campaigns</title>
 </head>
 <body>
+
+<jsp:include page="header.jsp"/>
+
+<br><br><br>
+
 	<c:forEach items="${campaigns}" var="campaign">
 		<c:out value="${campaign.title}" />
 <%-- 		<c:out value="${campaign.categories}" /> --%>
@@ -21,6 +26,9 @@
 
 </c:forEach>
 
+<br><br><br>
+
+<jsp:include page="footer.jsp"/>
 
 </body>
 </html>
