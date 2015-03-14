@@ -1,20 +1,39 @@
 package je.backit.control;
 
+import java.util.Arrays;
 import java.util.Collection;
 import java.util.List;
-import java.util.UUID;
 
 import org.jooq.Configuration;
 import org.jooq.DAO;
+import org.jooq.DSLContext;
 import org.jooq.Field;
 import org.jooq.RecordMapper;
 import org.jooq.SQLDialect;
 import org.jooq.Table;
 import org.jooq.TableRecord;
+import org.jooq.UpdatableRecord;
 import org.jooq.conf.Settings;
 import org.jooq.exception.DataAccessException;
 
 public abstract class AbstractDAO<R extends TableRecord<R>, T, I> implements DAO<R, T, Integer> {
+
+  <R extends UpdatableRecord<R>> void insertIntoNoReturn(DSLContext sql, Table<R> t, R record) {
+    if (Arrays.stream(record.fields()).filter(f -> record.getValue(f) != null).count() == 0) {
+      throw new IllegalStateException("The record has all its fields set to null: can't be inserted.");
+    }
+
+    for (Field<?> f : record.fields()) {
+      if (record.getValue(f) == null) record.changed(f, false);
+    }
+    sql.attach(record);
+    record.store();
+  }
+
+  <R extends UpdatableRecord<R>> long insertInto(DSLContext sql, Table<R> t, R record) {
+    insertIntoNoReturn(sql, t, record);
+    return record.getValue(record.getTable().getIdentity().getField()).longValue();
+  }
 
   @Override
   public Configuration configuration() {
@@ -49,61 +68,61 @@ public abstract class AbstractDAO<R extends TableRecord<R>, T, I> implements DAO
   @Override
   public void insert(T object) throws DataAccessException {
     // TODO Auto-generated method stub
-    
+
   }
 
   @Override
   public void insert(T... objects) throws DataAccessException {
     // TODO Auto-generated method stub
-    
+
   }
 
   @Override
   public void insert(Collection<T> objects) throws DataAccessException {
     // TODO Auto-generated method stub
-    
+
   }
 
   @Override
   public void update(T object) throws DataAccessException {
     // TODO Auto-generated method stub
-    
+
   }
 
   @Override
   public void update(T... objects) throws DataAccessException {
     // TODO Auto-generated method stub
-    
+
   }
 
   @Override
   public void update(Collection<T> objects) throws DataAccessException {
     // TODO Auto-generated method stub
-    
+
   }
 
   @Override
   public void delete(T... objects) throws DataAccessException {
     // TODO Auto-generated method stub
-    
+
   }
 
   @Override
   public void delete(Collection<T> objects) throws DataAccessException {
     // TODO Auto-generated method stub
-    
+
   }
 
   @Override
   public void deleteById(Integer... ids) throws DataAccessException {
     // TODO Auto-generated method stub
-    
+
   }
 
   @Override
   public void deleteById(Collection<Integer> ids) throws DataAccessException {
     // TODO Auto-generated method stub
-    
+
   }
 
   @Override
