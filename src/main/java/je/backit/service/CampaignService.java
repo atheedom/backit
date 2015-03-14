@@ -24,8 +24,7 @@ public class CampaignService implements Service<Campaign, Integer> {
 
   @Override
   public Campaign getDetails(Integer id) {
-    return new Campaign();
-    //return campaignDAO.findById(id);
+    return campaignDAO.findById(id);
   }
 
 }
