@@ -1,20 +1,22 @@
 package je.backit.boundary;
 
 import java.io.IOException;
-
+import javax.inject.Inject;
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import je.backit.control.AccountDAO;
+import je.backit.entity.Account;
 
-import je.backit.model.Authenticator;
-import je.backit.model.User;
 
 @WebServlet("/LoginController")
 public class LoginController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
+
+  @Inject AccountDAO accountDAO;
 
 	public LoginController() {
 		super();
@@ -27,11 +29,9 @@ public class LoginController extends HttpServlet {
 		String password = request.getParameter("password");
 		RequestDispatcher rd = null;
 
-		Authenticator authenticator = new Authenticator();
-		String result = authenticator.authenticate(username, password);
-		if (result.equals("success")) {
+		if (accountDAO.authenticate(username, password)) {
 			rd = request.getRequestDispatcher("/success.jsp");
-			User user = new User(username, password);
+			Account user = accountDAO.findByUsername(username);
 			request.setAttribute("user", user);
 		} else {
 			rd = request.getRequestDispatcher("/error.jsp");
