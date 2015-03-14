@@ -15,6 +15,8 @@ import je.backit.control.action.ActionFactory;
 @WebServlet({ "/v1/*" })
 public class FrontController extends HttpServlet {
 
+  private static final long serialVersionUID = 8614118932979177586L;
+  
   @Inject
   ActionFactory actionFactory;
   
