@@ -2,6 +2,7 @@ package je.backit.entity;
 
 import java.math.BigDecimal;
 import java.time.ZonedDateTime;
+import static java.util.Collections.emptyList;
 import java.util.List;
 import je.backit.utils.TimeLeft;
 
@@ -61,7 +62,7 @@ public class Campaign extends BaseEntity {
   }
 
   public List<String> getCategories() {
-    return categories;
+    return categories == null ? emptyList() : categories;
   }
 
   public void setCategories(List<String> categories) {
