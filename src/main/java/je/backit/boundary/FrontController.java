@@ -2,18 +2,22 @@ package je.backit.boundary;
 
 import java.io.IOException;
 
+import javax.inject.Inject;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import je.backit.control.AbstractActionFactory;
-import je.backit.control.Action;
+import je.backit.control.action.Action;
+import je.backit.control.action.ActionFactory;
 
 @WebServlet({ "/v1/*" })
 public class FrontController extends HttpServlet {
 
+  @Inject
+  ActionFactory actionFactory;
+  
   public FrontController() {
     super();
   }
@@ -22,7 +26,7 @@ public class FrontController extends HttpServlet {
       HttpServletResponse response) throws ServletException {
 
     try {
-      Action action = AbstractActionFactory.getInstance().getAction(request);
+      Action action = actionFactory.getAction(request);
       String view = action.execute(request, response);
       request.getRequestDispatcher(view).forward(request, response);
     } catch (Exception e) {
