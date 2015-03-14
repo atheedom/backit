@@ -1,6 +1,7 @@
 package je.backit.control;
 
 import java.math.BigDecimal;
+import java.sql.Timestamp;
 import java.time.ZoneOffset;
 import java.time.ZonedDateTime;
 import static java.util.Collections.emptyList;
@@ -16,6 +17,7 @@ import static je.backit.jooq.Tables.CAMPAIGN_TAG;
 import static je.backit.jooq.Tables.CATEGORY;
 import static je.backit.jooq.Tables.FUNDING;
 import je.backit.jooq.tables.records.CampaignRecord;
+import je.backit.jooq.tables.records.CampaignTagRecord;
 import org.jooq.Condition;
 import org.jooq.DSLContext;
 import org.jooq.Record;
@@ -53,11 +55,29 @@ public class CampaignDAO extends AbstractDAO<CampaignRecord, Campaign, Integer> 
   }
 
   @Override
+  public void insert(Campaign c) {
+    DSLContext sql = jooq.sql();
+    CampaignRecord r = mapToRecord(c);
+    insertInto(sql, CAMPAIGN, r);
+
+    List<String> tags = c.getCategories();
+    if (tags.isEmpty()) return;
+
+    Map<String, Integer> allTags = sql.select(CATEGORY.CATEGORY_, CATEGORY.ID).from(CATEGORY).fetchMap(CATEGORY.CATEGORY_, CATEGORY.ID);
+
+    for (String tag : tags) {
+      CampaignTagRecord t = new CampaignTagRecord(r.getId(), allTags.get(tag));
+      t.attach(sql.configuration());
+      t.insert();
+    }
+  }
+
+  @Override
   public Campaign findById(Integer campaignId) {
     DSLContext sql = jooq.sql();
 
     Optional<Campaign> campaign = getCampaignsById(sql, campaignId).stream()
-            .map(CampaignDAO::mapRecordToCampaign).findAny();
+            .map(CampaignDAO::mapFromRecord).findAny();
     if (!campaign.isPresent()) return null;
 
     List<String> tags = sql
@@ -76,7 +96,7 @@ public class CampaignDAO extends AbstractDAO<CampaignRecord, Campaign, Integer> 
   public List<Campaign> findAll() throws DataAccessException {
     DSLContext sql = jooq.sql();
     List<Campaign> campaigns = getCampaignsById(sql).stream()
-            .map(CampaignDAO::mapRecordToCampaign).collect(toList());
+            .map(CampaignDAO::mapFromRecord).collect(toList());
 
     Map<Integer, List<String>> tagsPerCampaign = sql
             .select(CAMPAIGN_TAG.CAMPAIGN_ID, CATEGORY.CATEGORY_)
@@ -104,7 +124,7 @@ public class CampaignDAO extends AbstractDAO<CampaignRecord, Campaign, Integer> 
             .fetch();
   }
 
-  private static Campaign mapRecordToCampaign(Record r) {
+  private static Campaign mapFromRecord(Record r) {
     Campaign c = new Campaign();
     c.setId(r.getValue(CAMPAIGN.ID));
     c.setStartDate(ZonedDateTime.ofInstant(r.getValue(CAMPAIGN.CREATION_DATE)
@@ -119,6 +139,20 @@ public class CampaignDAO extends AbstractDAO<CampaignRecord, Campaign, Integer> 
     c.setVideoURI(r.getValue(CAMPAIGN.VIDEOURI));
     c.setDescription(r.getValue(CAMPAIGN.HTML));
     return c;
+  }
+
+  private static CampaignRecord mapToRecord(Campaign c) {
+    CampaignRecord r = new CampaignRecord()
+            .setCreationDate(new Timestamp(c.getStartDate().toInstant().toEpochMilli()))
+            .setExpirationDate(new Timestamp(c.getEndDate().toInstant().toEpochMilli()))
+            .setHashtag(c.getHashtag())
+            .setHtml(c.getDescription())
+            .setId(c.getId())
+            .setImageuri(c.getImageURI())
+            .setSummary(c.getSummary())
+            .setTargetFunding(c.getTargetFunding())
+            .setVideouri(c.getVideoURI());
+    return r;
   }
 
 }
