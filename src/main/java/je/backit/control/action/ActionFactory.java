@@ -23,12 +23,17 @@ public class ActionFactory {
   private CampaignDetailAction campaignDetailAction;
 
   @Inject
+  private CampaignFundAction campaignFundAction;
+  
+  @Inject
   private LoginRedirectAction loginRedirectAction;
+  
 
   @PostConstruct
   public void populateActions() {
     actions.put("GET/campaigns/list/", campaignListAction);
     actions.put("GET/campaigns/detail/", campaignDetailAction);
+    actions.put("GET/campaigns/fund/", campaignFundAction);
     actions.put("LoginRedirect", loginRedirectAction);
   }
 

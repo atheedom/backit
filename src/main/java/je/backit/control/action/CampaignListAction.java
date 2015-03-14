@@ -1,5 +1,8 @@
 package je.backit.control.action;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import javax.enterprise.context.RequestScoped;
 import javax.inject.Inject;
 import javax.servlet.http.HttpServletRequest;
@@ -18,9 +21,18 @@ public class CampaignListAction implements Action {
       throws Exception {
 
     // Retrieve data from database
-    request.setAttribute("campaigns", campaignService.getAll());
+//    request.setAttribute("campaigns", campaignService.getAll());
 
-    return "/showcampaigns.jsp";
+    List<Campaign> campaigns = new ArrayList<>();
+
+    Campaign campaign = new Campaign();
+    campaign.setTitle("Local Arts Project");
+
+    campaigns.add(campaign);
+    
+    request.setAttribute("campaigns", campaigns);
+    
+    return "ShowCampaignsList";
 
   }
 

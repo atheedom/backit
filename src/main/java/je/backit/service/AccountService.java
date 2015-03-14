@@ -1,10 +1,12 @@
 package je.backit.service;
 
+import java.math.BigDecimal;
 import java.util.List;
 
 import javax.enterprise.context.RequestScoped;
 import javax.inject.Inject;
 
+import je.backit.control.AccountDAO;
 import je.backit.entity.Account;
 import je.backit.jooq.tables.records.AppUserRecord;
 
@@ -14,7 +16,7 @@ import org.jooq.DAO;
 public class AccountService implements Service<Account, Integer> {
 
   @Inject
-  DAO<AppUserRecord, Account, Integer> accountDAO;
+  AccountDAO accountDAO;
 
   @Override
   public List<Account> getAll() {

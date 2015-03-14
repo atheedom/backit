@@ -28,7 +28,7 @@ import static je.backit.jooq.Tables.CAMPAIGN;
 import static je.backit.jooq.Tables.CAMPAIGN_TAG;
 import static je.backit.jooq.Tables.CATEGORY;
 
-public class CampaignDAO extends AbstractDAO<CampaignRecord, Campaign> {
+public class CampaignDAO extends AbstractDAO<CampaignRecord, Campaign, Integer> {
 
   @Inject
   JooqProvider jooq;

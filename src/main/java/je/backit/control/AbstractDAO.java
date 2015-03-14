@@ -14,7 +14,7 @@ import org.jooq.TableRecord;
 import org.jooq.conf.Settings;
 import org.jooq.exception.DataAccessException;
 
-public abstract class AbstractDAO<R extends TableRecord<R>, T> implements DAO<R, T, UUID> {
+public abstract class AbstractDAO<R extends TableRecord<R>, T, I> implements DAO<R, T, Integer> {
 
   @Override
   public Configuration configuration() {
@@ -95,13 +95,13 @@ public abstract class AbstractDAO<R extends TableRecord<R>, T> implements DAO<R,
   }
 
   @Override
-  public void deleteById(UUID... ids) throws DataAccessException {
+  public void deleteById(Integer... ids) throws DataAccessException {
     // TODO Auto-generated method stub
     
   }
 
   @Override
-  public void deleteById(Collection<UUID> ids) throws DataAccessException {
+  public void deleteById(Collection<Integer> ids) throws DataAccessException {
     // TODO Auto-generated method stub
     
   }
@@ -113,7 +113,7 @@ public abstract class AbstractDAO<R extends TableRecord<R>, T> implements DAO<R,
   }
 
   @Override
-  public boolean existsById(UUID id) throws DataAccessException {
+  public boolean existsById(Integer id) throws DataAccessException {
     // TODO Auto-generated method stub
     return false;
   }
@@ -126,7 +126,7 @@ public abstract class AbstractDAO<R extends TableRecord<R>, T> implements DAO<R,
 
 
   @Override
-  public T findById(UUID id) throws DataAccessException {
+  public T findById(Integer id) throws DataAccessException {
     // TODO Auto-generated method stub
     return null;
   }

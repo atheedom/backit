@@ -23,7 +23,7 @@ public class CampaignDetailAction implements Action {
     // Retrieve data from database
     request.setAttribute("campaigns", campaignService.getDetails(campaignId));
 
-    return "/showcampaigns.jsp";
+    return "ShowCampaignDetails";
 
   }
 
