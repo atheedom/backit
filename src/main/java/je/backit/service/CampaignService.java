@@ -35,6 +35,20 @@ public class CampaignService implements Service<Campaign, Integer> {
 
   @Override
   public Campaign getDetails(Integer id) {  
+    
+    /*
+     title
+     description
+     durations - endate/startdate
+     
+     */
+    
+    
+    Campaign campaign = campaignDAO.findById(id);
+    campaign.setNoBackers(campaignDAO.getNumberOfDonors(campaign.getId()));
+    campaign.setBacked(campaignDAO.getAmountFunded(campaign.getId())); 
+    
+    
     return campaignDAO.findById(id);
   }
 
