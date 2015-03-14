@@ -1,6 +1,6 @@
 package je.backit.entity;
 
-public enum CATEGORY {
+public enum Category {
 
   ARTS, SPORTS, MUSIC;
 
