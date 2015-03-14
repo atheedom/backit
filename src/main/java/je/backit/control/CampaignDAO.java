@@ -28,8 +28,7 @@ import static org.jooq.impl.DSL.trueCondition;
 
 public class CampaignDAO extends AbstractDAO<CampaignRecord, Campaign, Integer> {
 
-  @Inject
-  JooqProvider jooq;
+  @Inject JooqProvider jooq;
 
   public Integer getNumberOfView(Integer campaignId) {
     return jooq.sql().selectCount().from(FUNDING).where(FUNDING.CAMPAIGN_ID.eq(campaignId)).fetchOne(0, int.class);
