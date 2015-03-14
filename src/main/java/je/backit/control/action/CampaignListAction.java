@@ -17,10 +17,8 @@ public class CampaignListAction implements Action {
   public String execute(HttpServletRequest request, HttpServletResponse response)
       throws Exception {
 
-    Integer campaignId = Integer.valueOf((String) request.getAttribute("campaignId"));
-
     // Retrieve data from database
-    request.setAttribute("campaigns", campaignService.getDetails(campaignId));
+    request.setAttribute("campaigns", campaignService.getAll());
 
     return "/showcampaigns.jsp";
 
