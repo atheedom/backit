@@ -75,9 +75,11 @@ public class CampaignDAO extends AbstractDAO<CampaignRecord, Campaign, Integer> 
   public Campaign findById(Integer campaignId) {
     DSLContext sql = jooq.sql();
 
-    Optional<Campaign> campaign = getCampaignsById(sql, campaignId).stream()
+    Optional<Campaign> campaignOp = getCampaignsById(sql, campaignId).stream()
             .map(CampaignDAO::mapFromRecord).findAny();
-    if (!campaign.isPresent()) return null;
+    if (!campaignOp.isPresent()) return null;
+
+    Campaign campaign = campaignOp.get();
 
     List<String> tags = sql
             .select(TAG.TAG_)
@@ -86,9 +88,11 @@ public class CampaignDAO extends AbstractDAO<CampaignRecord, Campaign, Integer> 
             .where(CAMPAIGN_TAG.CAMPAIGN_ID.eq(campaignId))
             .fetch(TAG.TAG_);
 
-    campaign.get().setCategories(tags);
+    campaign.setCategories(tags);
+    campaign.setBacked(getAmountFunded(campaignId));
+    campaign.setNoBackers(getNumberOfDonors(campaignId));
 
-    return campaign.get();
+    return campaign;
   }
 
   @Override
