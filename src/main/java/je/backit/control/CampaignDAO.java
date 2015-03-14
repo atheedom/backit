@@ -13,11 +13,15 @@ import javax.inject.Inject;
 import je.backit.entity.Campaign;
 import je.backit.jooq.JooqProvider;
 import static je.backit.jooq.Tables.CAMPAIGN;
+import static je.backit.jooq.Tables.CAMPAIGN_REWARD;
 import static je.backit.jooq.Tables.CAMPAIGN_TAG;
 import static je.backit.jooq.Tables.FUNDING;
+import static je.backit.jooq.Tables.REWARD;
 import static je.backit.jooq.Tables.TAG;
 import je.backit.jooq.tables.records.CampaignRecord;
+import je.backit.jooq.tables.records.CampaignRewardRecord;
 import je.backit.jooq.tables.records.CampaignTagRecord;
+import je.backit.jooq.tables.records.RewardRecord;
 import org.jooq.Condition;
 import org.jooq.DSLContext;
 import org.jooq.Record;
@@ -69,6 +73,23 @@ public class CampaignDAO extends AbstractDAO<CampaignRecord, Campaign, Integer> 
       t.attach(sql.configuration());
       t.insert();
     }
+
+    for (RewardRecord reward : c.getRewards()) {
+      addReward(sql, reward, r.getId());
+    }
+  }
+
+  public Campaign addReward(Campaign c, RewardRecord reward) {
+    DSLContext sql = jooq.sql();
+    addReward(sql, reward, c.getId());
+    return findById(c.getId());
+  }
+
+  private void addReward(DSLContext sql, RewardRecord reward, Integer campaignId) {
+    insertInto(sql, REWARD, reward);
+    CampaignRewardRecord crr = new CampaignRewardRecord(campaignId, reward.getId());
+    crr.attach(sql.configuration());
+    crr.insert();
   }
 
   @Override
@@ -89,6 +110,16 @@ public class CampaignDAO extends AbstractDAO<CampaignRecord, Campaign, Integer> 
             .fetch(TAG.TAG_);
 
     campaign.setCategories(tags);
+
+    List<RewardRecord> rewards = sql
+            .selectFrom(REWARD)
+            .where(REWARD.ID.in(
+                            sql.select(CAMPAIGN_REWARD.REWARD_ID)
+                            .from(CAMPAIGN_REWARD)
+                            .where(CAMPAIGN_REWARD.REWARD_ID.eq(CAMPAIGN_REWARD.REWARD_ID)))
+            ).fetch();
+    campaign.setRewards(rewards);
+
     campaign.setBacked(getAmountFunded(campaignId));
     campaign.setNoBackers(getNumberOfDonors(campaignId));
 

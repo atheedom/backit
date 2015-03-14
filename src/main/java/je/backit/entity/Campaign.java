@@ -4,6 +4,7 @@ import java.math.BigDecimal;
 import java.time.ZonedDateTime;
 import static java.util.Collections.emptyList;
 import java.util.List;
+import je.backit.jooq.tables.records.RewardRecord;
 import je.backit.utils.TimeLeft;
 
 public class Campaign extends BaseEntity {
@@ -20,10 +21,12 @@ public class Campaign extends BaseEntity {
   private ZonedDateTime startDate;
   private ZonedDateTime endDate;
   private BigDecimal targetFunding;
-  
+
   private String timeRemaining;
   private BigDecimal backed;
   private Integer noBackers;
+
+  private List<RewardRecord> rewards;
 
   public Integer getId() {
     return id;
@@ -121,8 +124,8 @@ public class Campaign extends BaseEntity {
     return endDate;
   }
 
-  
-  
+
+
   public String getTimeRemaining() {
     return timeRemaining;
   }
@@ -147,8 +150,18 @@ public class Campaign extends BaseEntity {
     this.noBackers = noBackers;
   }
 
-  
+
   public TimeLeft getTimeLeft() {
     return new TimeLeft(ZonedDateTime.now(), endDate);
   }
+
+  public List<RewardRecord> getRewards() {
+    return rewards == null ? emptyList() : rewards;
+  }
+
+  public void setRewards(List<RewardRecord> rewards) {
+    this.rewards = rewards;
+  }
+
+
 }
