@@ -53,61 +53,61 @@ public class CampaignDAO implements DAO<AppUserRecord, Campaign, UUID>{
   @Override
   public void insert(Campaign object) throws DataAccessException {
     // TODO Auto-generated method stub
-    
+
   }
 
   @Override
   public void insert(Campaign... objects) throws DataAccessException {
     // TODO Auto-generated method stub
-    
+
   }
 
   @Override
   public void insert(Collection<Campaign> objects) throws DataAccessException {
     // TODO Auto-generated method stub
-    
+
   }
 
   @Override
   public void update(Campaign object) throws DataAccessException {
     // TODO Auto-generated method stub
-    
+
   }
 
   @Override
   public void update(Campaign... objects) throws DataAccessException {
     // TODO Auto-generated method stub
-    
+
   }
 
   @Override
   public void update(Collection<Campaign> objects) throws DataAccessException {
     // TODO Auto-generated method stub
-    
+
   }
 
   @Override
   public void delete(Campaign... objects) throws DataAccessException {
     // TODO Auto-generated method stub
-    
+
   }
 
   @Override
   public void delete(Collection<Campaign> objects) throws DataAccessException {
     // TODO Auto-generated method stub
-    
+
   }
 
   @Override
   public void deleteById(UUID... ids) throws DataAccessException {
     // TODO Auto-generated method stub
-    
+
   }
 
   @Override
   public void deleteById(Collection<UUID> ids) throws DataAccessException {
     // TODO Auto-generated method stub
-    
+
   }
 
   @Override
@@ -130,24 +130,26 @@ public class CampaignDAO implements DAO<AppUserRecord, Campaign, UUID>{
 
   @Override
   public List<Campaign> findAll() throws DataAccessException {
-    // TODO replace with appropriate data access code
-    
-    List<Campaign> campaigns = new ArrayList<>();
 
+    List<Campaign> campaigns = mockCampaign();
+
+    return campaigns;
+  }
+
+  private List<Campaign> mockCampaign() {
+    // TODO replace with appropriate data access code
+
+    List<Campaign> campaigns = new ArrayList<>();
     Campaign campaign = new Campaign();
     campaign.setTitle("Local Arts Project");
     campaign.setCategories(CATEGORY.ARTS);
-    campaign
-        .setDescription("A project about getting kids involve with art adn all simular related stuff. Ran by the local community for the local kids. We need some cash to buy paint and soap cuase the kids make a big mess with paint as they dont know hope paint.");
+    campaign.setDescription("A project about getting kids involve with art adn all simular related stuff. Ran by the local community for the local kids. We need some cash to buy paint and soap cuase the kids make a big mess with paint as they dont know hope paint.");
     campaign.setDuration(10);
     campaign.setHashtag("#localarts");
     campaign.setImageURI("/img/localarts.jpg");
-    campaign
-        .setSummary("A project about getting kids involve with art and stuff");
+    campaign.setSummary("A project about getting kids involve with art and stuff");
     campaign.setVideoURI("/video/localartsvideo.mov");
-    
     campaigns.add(campaign);
-    
     return campaigns;
   }
 
