@@ -3,33 +3,18 @@ package je.backit.control;
 import java.math.BigDecimal;
 import java.time.ZoneOffset;
 import java.time.ZonedDateTime;
-
-import static java.util.Collections.emptyList;
-
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Map;
-import java.util.Optional;
-
-import static java.util.stream.Collectors.toList;
-
 import javax.inject.Inject;
-
 import je.backit.entity.Campaign;
 import je.backit.jooq.JooqProvider;
 import static je.backit.jooq.Tables.CAMPAIGN;
-import static je.backit.jooq.Tables.CAMPAIGN_TAG;
-import static je.backit.jooq.Tables.CATEGORY;
-import static je.backit.jooq.Tables.FUNDING;
 import je.backit.jooq.tables.records.CampaignRecord;
-
 import org.jooq.Condition;
 import org.jooq.DSLContext;
 import org.jooq.Record;
 import org.jooq.Result;
 import org.jooq.exception.DataAccessException;
-
-import static org.jooq.impl.DSL.sum;
 import static org.jooq.impl.DSL.trueCondition;
 
 public class MOCKCampaignDAO extends AbstractDAO<CampaignRecord, Campaign, Integer> {
@@ -59,7 +44,7 @@ public class MOCKCampaignDAO extends AbstractDAO<CampaignRecord, Campaign, Integ
 
   @Override
   public Campaign findById(Integer campaignId) {
-    
+
 
     Campaign campaign = new Campaign();
     List<String> cats = new ArrayList();
@@ -77,16 +62,16 @@ public class MOCKCampaignDAO extends AbstractDAO<CampaignRecord, Campaign, Integ
     campaign.setType("FUND FOR SHARE");
     campaign.setVideoURI("");
     campaign.setId(campaignId);
-    
+
 
     return campaign;
-    
+
 
   }
 
   @Override
   public List<Campaign> findAll() throws DataAccessException {
-    
+
 
     List<Campaign> cams = new ArrayList();
     cams.add(findById(1));
@@ -95,7 +80,7 @@ public class MOCKCampaignDAO extends AbstractDAO<CampaignRecord, Campaign, Integ
     cams.add(findById(4));
 
     return cams;
-    
+
 
   }
 
