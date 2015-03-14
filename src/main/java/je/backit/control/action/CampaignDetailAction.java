@@ -17,8 +17,7 @@ public class CampaignDetailAction implements Action {
   public String execute(HttpServletRequest request, HttpServletResponse response)
       throws Exception {
 
-    Integer campaignId = Integer.valueOf((String) request
-        .getAttribute("campaignId"));
+    Integer campaignId = Integer.valueOf((String) request.getParameter("campaignId"));
 
     // Retrieve data from database
     request.setAttribute("campaigns", campaignService.getDetails(campaignId));

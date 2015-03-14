@@ -32,7 +32,8 @@ public class ActionFactory {
   @PostConstruct
   public void populateActions() {
     actions.put("GET/campaigns/list/", campaignListAction);
-    actions.put("GET/campaigns/detail/", campaignDetailAction);
+    actions.put("GET/campaigns/details/", campaignDetailAction);
+    actions.put("GET/campaigns/details", campaignDetailAction);
     actions.put("GET/campaigns/fund/", campaignFundAction);
     actions.put("LoginRedirect", loginRedirectAction);
   }
@@ -40,6 +41,9 @@ public class ActionFactory {
   public synchronized Action getAction(HttpServletRequest request)
       throws ActionFactoryException {
     String path = request.getPathInfo();
+    String campaignid = request.getParameter("campaignId");
+    Map<String, String[]> campignid = request.getParameterMap();
+
     if (path != null || path.length() > 0) {
       String actionKey = request.getMethod() + path;
       action = actions.get(actionKey);
