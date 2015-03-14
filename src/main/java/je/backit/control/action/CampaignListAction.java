@@ -21,16 +21,16 @@ public class CampaignListAction implements Action {
       throws Exception {
 
     // Retrieve data from database
-//    request.setAttribute("campaigns", campaignService.getAll());
+    request.setAttribute("campaigns", campaignService.getAll());
 
-    List<Campaign> campaigns = new ArrayList<>();
-
-    Campaign campaign = new Campaign();
-    campaign.setTitle("Local Arts Project");
-
-    campaigns.add(campaign);
+//    List<Campaign> campaigns = new ArrayList<>();
+//
+//    Campaign campaign = new Campaign();
+//    campaign.setTitle("Local Arts Project");
+//
+//    campaigns.add(campaign);
     
-    request.setAttribute("campaigns", campaigns);
+//    request.setAttribute("campaigns", campaigns);
     
     return "ShowCampaignsList";
 
