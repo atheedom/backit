@@ -3,7 +3,6 @@ package je.backit.control;
 import java.util.Arrays;
 import java.util.Collection;
 import java.util.List;
-
 import org.jooq.Configuration;
 import org.jooq.DAO;
 import org.jooq.DSLContext;
@@ -71,7 +70,7 @@ public abstract class AbstractDAO<R extends TableRecord<R>, T, I> implements DAO
 
   }
 
-  @Override
+  @Override @SuppressWarnings("unchecked")
   public void insert(T... objects) throws DataAccessException {
     // TODO Auto-generated method stub
 
@@ -89,7 +88,7 @@ public abstract class AbstractDAO<R extends TableRecord<R>, T, I> implements DAO
 
   }
 
-  @Override
+  @Override @SuppressWarnings("unchecked")
   public void update(T... objects) throws DataAccessException {
     // TODO Auto-generated method stub
 
@@ -101,7 +100,7 @@ public abstract class AbstractDAO<R extends TableRecord<R>, T, I> implements DAO
 
   }
 
-  @Override
+  @Override @SuppressWarnings("unchecked")
   public void delete(T... objects) throws DataAccessException {
     // TODO Auto-generated method stub
 
@@ -113,7 +112,7 @@ public abstract class AbstractDAO<R extends TableRecord<R>, T, I> implements DAO
 
   }
 
-  @Override
+  @Override @SuppressWarnings("unchecked")
   public void deleteById(Integer... ids) throws DataAccessException {
     // TODO Auto-generated method stub
 
@@ -150,7 +149,7 @@ public abstract class AbstractDAO<R extends TableRecord<R>, T, I> implements DAO
     return null;
   }
 
-  @Override
+  @Override @SuppressWarnings("unchecked")
   public <Z> List<T> fetch(Field<Z> field, Z... values)
       throws DataAccessException {
     // TODO Auto-generated method stub

@@ -47,7 +47,7 @@ public class MOCKCampaignDAO extends AbstractDAO<CampaignRecord, Campaign, Integ
 
 
     Campaign campaign = new Campaign();
-    List<String> cats = new ArrayList();
+    List<String> cats = new ArrayList<> ();
     cats.add("Sports");
     cats.add("Arts");
     campaign.setCategories(cats);
@@ -73,7 +73,7 @@ public class MOCKCampaignDAO extends AbstractDAO<CampaignRecord, Campaign, Integ
   public List<Campaign> findAll() throws DataAccessException {
 
 
-    List<Campaign> cams = new ArrayList();
+    List<Campaign> cams = new ArrayList<> ();
     cams.add(findById(1));
     cams.add(findById(2));
     cams.add(findById(3));
