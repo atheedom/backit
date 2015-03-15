@@ -14,9 +14,9 @@
 <!--[if gt IE 8]><!-->
 <html lang="en-GB"> <!--<![endif]-->
 
-    
+
         <jsp:include page="head.jsp"/>
-    
+
 
 <body>
 <jsp:include page="header.jsp"/>
@@ -36,39 +36,39 @@
 
                 <div class="project-funding">
                     <div class="container">
-                        
-                            
+
+
 		            <c:choose>
 		        			<c:when test= "${campaign.percentageFunded <= 100 && campaign.timeLeft.timeLeftAsString == 0}"><div class="campaign-funding failed"> </c:when >
 		       		 		<c:when test= "${campaign.percentageFunded == 100 && campaign.timeLeft.timeLeftAsString == 0}"><div class="campaign-funding successful"> </c:when >
 		        			<c:otherwise><div class="campaign-funding"></c:otherwise>
 					</c:choose>
-                            
-                            
+
+
                             <progress value="${campaign.percentageFunded}" max="100"></progress>
-                           
-                            
-                        
-                            <!-- 
+
+
+
+                            <!--
                                <c:if test ="${campaign.percentageFunded <= 100}" var="var_name" scope= "page" >
-                            
+
                             </c:if>
-                            
+
                             >100% + timeout = success
                             <100% + timeout = fail
                             <100% + time remaining = nothing
-                            
+
                             if hours left RED otherwise nothing
-                            
+
                              -->
                             <ul>
                                 <li><strong>${campaign.noBackers}</strong> <span>Backers</span></li>
-                                <li><strong>&pound;${campaign.pledged}</strong> <span>Pledged</span></li>
-                                <li><strong>&pound;${campaign.targetFunding}</strong> <span>Target</span></li>
+                                <li><strong>&pound;&nbsp;${campaign.pledgedAsString}</strong> <span>Pledged</span></li>
+                                <li><strong>&pound;&nbsp;${campaign.targetFundingAsString}</strong> <span>Target</span></li>
                                 <li><strong>${campaign.percentageFunded}%</strong> <span>Backed</span></li>
                                 <li><strong>${campaign.timeLeft.timeLeftAsString}</strong> <span>${campaign.timeLeft.unitAsString}</span></li>
                             </ul>
-                        </div>                        
+                        </div>
                         <p>This campaign concludes at: ${campaign.formatedEndDate}.</p>
                  					<form action="" method="POST">
 					  <script
@@ -83,12 +83,12 @@
 					    data-label="Back This Project"
 					    data-bitcoin="true">
 					  </script>
-					</form>   
+					</form>
                     </div>
 
                 </div>
 
-   
+
 
 
 
@@ -106,16 +106,16 @@
                 </div>
 
 
-                 <c:forEach items="${campaign.rewards}" var="reward"> 
-                   
-                                  	       	
+                 <c:forEach items="${campaign.rewards}" var="reward">
+
+
       	            <article class="project-backit">
-      	           
+
                     <ul>
                         <li><h3>${reward.title}</h3></li>
                         <li><img style="width: 50px; height:50px;" src="${pageContext.request.contextPath}/img/backitcoin.svg"><span>${reward.totalNumber} Backers</span></li>
                         <li><img style="width: 50px; height:50px;" src="${pageContext.request.contextPath}/img/backitcoin.svg"><span>&pound;${reward.value}</span></li>
-                        <li>${reward.description}</li>                         
+                        <li>${reward.description}</li>
                     </ul>
                     <br>
                                                                     					<form action="" method="POST">
@@ -131,14 +131,14 @@
 					    data-label="Back This Project"
 					    data-bitcoin="true">
 					  </script>
-					</form>    
-         	
+					</form>
+
               </article>
-                                  	
-                    
+
+
 
                     </c:forEach>
-                
+
                 <!-- End Title Page -->
             </section>
         </article>

@@ -22,40 +22,40 @@
             <section id="how-it-works">
                 <!-- Title Page -->
                 <div class="section-title">
-                
+
                 <h1 class="title">We are the crowdfunding platform for Jersey!</h1>
 
- 
+
 
 <p class="title-description">BackIt connects great projects in our community with people who are passionate about good causes.
  Crowdfunding pulls multiple individual donations together to achieve big things. You may have heard people say, 'they only need a few pounds for a group of people and it's done', well that's what crowdfunding is.</p>
 
- 
+
 
 <p class="title-description">By keeping it local, your donation can achieve big things here in Jersey. You can back a variety of projects from art, music, heritage and sport.</p>
 
- 
+
 
 <p class="title-description">Make a difference - BackIt today!</p>
-                
-                
-   
+
+
+
                 </div>
                 <!-- End Title Page -->
             </section>
         </article>
         <!-- Home Section -->
-        
+
         <!-- Project Section -->
 
         <article id="current-projects" class="section white-bg">
             <section class="listings">
-              	<c:forEach items="${campaigns}" var="campaign">  
+              	<c:forEach items="${campaigns}" var="campaign">
                 <div class="campaign-listing">
                     <a href="${pageContext.request.contextPath}/v1/campaigns/details/?campaignId=${campaign.id}"><img src="${pageContext.request.contextPath}/img/${campaign.imageURI}" alt=""></a>
                     <h3><a href="${pageContext.request.contextPath}/v1/campaigns/details/?campaignId=${campaign.id}">${campaign.title}</a></h3>
                     <p><a href="${pageContext.request.contextPath}/v1/campaigns/details/?campaignId=${campaign.id}">${campaign.summary}</a></p>
-                        
+
 
 <%--             <c:if test="${empty campaign.timeLeft.timeLeftAsString}">                            --%>
 <%-- 		            <c:choose> --%>
@@ -67,40 +67,40 @@
 <%-- 		       		 		</c:when> --%>
 <%-- 					</c:choose> --%>
 <%--             </c:if> --%>
-            
+
 <%--                    <c:if test="${campaign.timeLeft.timeLeftAsString != 0}">                            --%>
-       
+
                <div class="campaign-funding">
 <%--                         </c:if> --%>
-            
-      
-                            
+
+
+
                             <progress value="${campaign.percentageFunded}" max="100"></progress>
 
                         <ul>
-                            <li><strong>&pound;${campaign.targetFunding}</strong> <span>Target</span></li>
-                            
-                                             
-                            <li 
+                            <li><strong>&pound;&nbsp;${campaign.targetFundingAsString}</strong> <span>Target</span></li>
+
+
+                            <li
                             	<c:if test ="${campaign.timeLeft.unitAsString == \"hours left\" }" var="var_name" scope= "page" >
                             		class="ends-today"
-                            	</c:if>                           
+                            	</c:if>
                             ><strong>${campaign.timeLeft.timeLeftAsString}</strong> <span>${campaign.timeLeft.unitAsString}</span></li>
-                            
-                            
-                            
+
+
+
                             <li><strong>${campaign.percentageFunded}%</strong> <span>Backed</span></li>
                             <li><strong>${campaign.noBackers}</strong> <span>Backers</span></li>
                         </ul>
                     </div>
-                </div> 
+                </div>
                 </c:forEach>
-                 
+
             </section>
         </article>
                 <!-- Project Section -->
-        
-       
+
+
 
         <!-- contact Section -->
         <article class="section gray-bg">
@@ -129,11 +129,11 @@
                         <p class="contact-submit">
                             <a id="contact-submit" class="submit" type="submit" value="submit">Send Your Email</a>
                         </p>
-                        
+
                         <div id="response">
-                        
+
                         </div>
-                    </form>                        
+                    </form>
                 </div>
                 <!-- End Title Page -->
 
@@ -142,13 +142,13 @@
                 <ul>
 
                     <li><a href="mailto:hello@backit.je">hello@backit.je</a></li>
-             
+
                 </ul>
             </div>
             </section>
         </article>
         <!-- contact Section -->
-        
+
 
 <jsp:include page="footer.jsp"/>
 
