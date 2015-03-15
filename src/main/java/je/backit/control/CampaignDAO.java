@@ -1,6 +1,7 @@
 package je.backit.control;
 
 import java.math.BigDecimal;
+import static java.math.BigDecimal.ZERO;
 import java.sql.Timestamp;
 import java.time.ZoneOffset;
 import java.time.ZonedDateTime;
@@ -29,8 +30,12 @@ import org.jooq.Result;
 import org.jooq.exception.DataAccessException;
 import static org.jooq.impl.DSL.sum;
 import static org.jooq.impl.DSL.trueCondition;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 public class CampaignDAO extends AbstractDAO<CampaignRecord, Campaign, Integer> {
+
+  private static final Logger LOG = LoggerFactory.getLogger(CampaignDAO.class);
 
   @Inject JooqProvider jooq;
 
@@ -46,7 +51,10 @@ public class CampaignDAO extends AbstractDAO<CampaignRecord, Campaign, Integer> 
   }
 
   public BigDecimal getAmountFunded(Integer campaignId) {
-    return jooq.sql().select(sum(FUNDING.FUNDING_AMOUNT)).from(FUNDING).where(FUNDING.CAMPAIGN_ID.eq(campaignId)).fetchOne(0, BigDecimal.class);
+    final BigDecimal funded = jooq.sql().select(sum(FUNDING.FUNDING_AMOUNT))
+            .from(FUNDING)
+            .where(FUNDING.CAMPAIGN_ID.eq(campaignId)).fetchOne(0, BigDecimal.class);
+    return funded == null ? ZERO : funded;
   }
 
   public BigDecimal getTargetFunding(Integer campaignId) {
@@ -54,7 +62,12 @@ public class CampaignDAO extends AbstractDAO<CampaignRecord, Campaign, Integer> 
   }
 
   public Integer getPercentFunded(Integer campaignId) {
-    return getAmountFunded(campaignId).divide(getTargetFunding(campaignId)).intValue();
+    final BigDecimal amountFunded = getAmountFunded(campaignId);
+    final BigDecimal targetFunding = getTargetFunding(campaignId);
+
+    LOG.info("getPercentFunded with: {}, {}", amountFunded, targetFunding);
+
+    return amountFunded.divide(targetFunding).intValue();
   }
 
   @Override
@@ -116,8 +129,9 @@ public class CampaignDAO extends AbstractDAO<CampaignRecord, Campaign, Integer> 
             .where(REWARD.ID.in(
                             sql.select(CAMPAIGN_REWARD.REWARD_ID)
                             .from(CAMPAIGN_REWARD)
-                            .where(CAMPAIGN_REWARD.REWARD_ID.eq(CAMPAIGN_REWARD.REWARD_ID)))
-            ).fetch();
+                            .where(CAMPAIGN_REWARD.CAMPAIGN_ID.eq(campaignId)))
+            ).orderBy(REWARD.VALUE)
+            .fetch();
     campaign.setRewards(rewards);
 
     campaign.setBacked(getAmountFunded(campaignId));
