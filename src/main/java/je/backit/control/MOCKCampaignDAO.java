@@ -5,16 +5,21 @@ import java.time.ZoneOffset;
 import java.time.ZonedDateTime;
 import java.util.ArrayList;
 import java.util.List;
+
 import javax.inject.Inject;
+
 import je.backit.entity.Campaign;
 import je.backit.jooq.JooqProvider;
 import static je.backit.jooq.Tables.CAMPAIGN;
 import je.backit.jooq.tables.records.CampaignRecord;
+import je.backit.jooq.tables.records.RewardRecord;
+
 import org.jooq.Condition;
 import org.jooq.DSLContext;
 import org.jooq.Record;
 import org.jooq.Result;
 import org.jooq.exception.DataAccessException;
+
 import static org.jooq.impl.DSL.trueCondition;
 
 public class MOCKCampaignDAO extends AbstractDAO<CampaignRecord, Campaign, Integer> {
@@ -62,7 +67,29 @@ public class MOCKCampaignDAO extends AbstractDAO<CampaignRecord, Campaign, Integ
     campaign.setType("FUND FOR SHARE");
     campaign.setVideoURI("");
     campaign.setId(campaignId);
+    
+    List<RewardRecord> rewards = new ArrayList<>();
+    RewardRecord reward = new RewardRecord();
+    reward.setId(1);
+    reward.setTitle("T-shirt");
+    reward.setDescription("If you gives us cash we will give you a T-shirt");
+    reward.setValue(new BigDecimal(20));
+    reward.setTotalNumber(1);
+    rewards.add(reward);
+    
+    reward.setId(2);
+    reward.setTitle("Cowboy Hat");
+    reward.setDescription("If you pledge we will send you a wonderful cowboy hat.");
+    reward.setValue(new BigDecimal(50));
+    rewards.add(reward);
 
+    reward.setId(3);
+    reward.setTitle("Spa Weekend");
+    reward.setDescription("If you dish the dosh we will treat you to a spa weekend.");
+    reward.setValue(new BigDecimal(150));
+    rewards.add(reward);
+
+    campaign.setRewards(rewards);
 
     return campaign;
 

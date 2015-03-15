@@ -35,6 +35,12 @@ public class FundService implements Service<Fund, Integer> {
     return fundDAO.fundCampaign(campaignId, donorId, amount);
   }
 
+  @Override
+  public Fund persist(Fund T) {
+    // TODO Auto-generated method stub
+    return null;
+  }
+
 
 
 }

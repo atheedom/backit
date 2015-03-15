@@ -1,7 +1,10 @@
 package je.backit.entity;
 
 import java.math.BigDecimal;
+import java.time.LocalDateTime;
+import java.time.Month;
 import java.time.ZonedDateTime;
+import java.time.format.DateTimeFormatter;
 
 import static java.util.Collections.emptyList;
 
@@ -30,6 +33,8 @@ public class Campaign extends BaseEntity {
   private Integer noBackers;
   private BigDecimal pledged;
   private Double percentageFunded;
+  
+  private String formatedEndDate;
 
   private List<RewardRecord> rewards;
 
@@ -139,6 +144,12 @@ public class Campaign extends BaseEntity {
   public ZonedDateTime getEndDate() {
     return endDate;
   }
+  
+  public String getFormatedEndDate() {
+    DateTimeFormatter format = DateTimeFormatter.ofPattern("MMM d yyyy  hh:mm a");
+    return endDate.format(format);
+  }
+
 
 
 

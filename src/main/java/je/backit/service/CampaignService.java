@@ -5,6 +5,7 @@ import java.util.List;
 
 import javax.enterprise.context.RequestScoped;
 import javax.inject.Inject;
+import javax.servlet.http.HttpServletRequest;
 
 import je.backit.control.CampaignDAO;
 import je.backit.control.MOCKCampaignDAO;
@@ -29,11 +30,7 @@ public class CampaignService implements Service<Campaign, Integer> {
     for (Campaign campaign : campaigns) {
       campaign.setNoBackers(campaignDAO.getNumberOfDonors(campaign.getId()));
       campaign.setPercentageFunded(campaignDAO.getPercentFunded(campaign.getId()));
-      
-//      TimeLeft timeLeft = new TimeLeft(campaign.getStartDate(), campaign.getEndDate());
-//          
-//          campaign.setTimeLeft(timeLeft);
-      
+           
     }
 
     return campaigns;
@@ -50,5 +47,13 @@ public class CampaignService implements Service<Campaign, Integer> {
     campaign.setPledged(pledged);  
     return campaign;
   }
+  
+
+  @Override
+  public Campaign persist(Campaign T) {
+    // TODO Auto-generated method stub
+    return new Campaign();
+  }
+  
 
 }

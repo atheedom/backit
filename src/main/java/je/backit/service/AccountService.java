@@ -28,4 +28,10 @@ public class AccountService implements Service<Account, Integer> {
       return accountDAO.findById(id);
   }
 
+  @Override
+  public Account persist(Account T) {
+    // TODO Auto-generated method stub
+    return null;
+  }
+
 }

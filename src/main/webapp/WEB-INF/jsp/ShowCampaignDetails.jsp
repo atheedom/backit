@@ -1,7 +1,11 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
 	pageEncoding="ISO-8859-1"%>
 
-<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
+
+
 <!DOCTYPE html>
 <!--[if lt IE 7]><html class="no-js lt-ie9 lt-ie8 lt-ie7" lang="en"> <![endif]-->
 <!--[if (IE 7)&!(IEMobile)]><html class="no-js lt-ie9 lt-ie8" lang="en"><![endif]-->
@@ -107,9 +111,9 @@
                                 <li><strong>${campaign.percentageFunded}%</strong> <span>Backed</span></li>
                                 <li><strong>${campaign.timeRemaining}</strong> <span>Days Left</span></li>
                             </ul>
-                        </div>
-                        <p>This campaign concludes at: 15:30 26th March 2015.</p>
-                        
+                        </div>                        
+                        <p>This campaign concludes at: ${campaign.formatedEndDate}.</p>
+
                     </div>
                     
                 </div>
@@ -134,6 +138,18 @@
 
 
                 <div class="project-backit">
+                                  	<c:forEach items="${campaign.rewards}" var="reward"> 
+                                  	
+          	<br>title: ${reward.title}
+          	<br>description: ${reward.description}
+          	<br>value: ${reward.value}
+          	<br>totalNumber: ${reward.totalNumber}
+          	
+      	
+                                  	
+                                  	
+                                  	 </c:forEach>
+                                  	
                     
                 </div>
 
