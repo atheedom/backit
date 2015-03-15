@@ -53,8 +53,8 @@ public class CampaignDAO extends AbstractDAO<CampaignRecord, Campaign, Integer> 
     return jooq.sql().select(CAMPAIGN.TARGET_FUNDING).from(CAMPAIGN).where(CAMPAIGN.ID.eq(campaignId)).fetchOne(0, BigDecimal.class);
   }
 
-  public Double getPercentFunded(Integer campaignId) {
-    return getAmountFunded(campaignId).divide(getTargetFunding(campaignId)).doubleValue();
+  public Integer getPercentFunded(Integer campaignId) {
+    return getAmountFunded(campaignId).divide(getTargetFunding(campaignId)).intValue();
   }
 
   @Override

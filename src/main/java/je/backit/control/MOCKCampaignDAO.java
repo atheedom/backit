@@ -43,8 +43,8 @@ public class MOCKCampaignDAO extends AbstractDAO<CampaignRecord, Campaign, Integ
     return new BigDecimal(30000);
   }
 
-  public Double getPercentFunded(Integer campaignId) {
-    return 120d;
+  public Integer getPercentFunded(Integer campaignId) {
+    return 225;
   }
 
   @Override
@@ -134,7 +134,7 @@ public class MOCKCampaignDAO extends AbstractDAO<CampaignRecord, Campaign, Integ
     campaign.setStartDate(ZonedDateTime.now().minusDays(34));
     campaign.setTargetFunding(new BigDecimal(55000));
     
-    cams.add(findById(4));
+    cams.add(campaign);
 
     return cams;
 

@@ -27,6 +27,8 @@ public class ActionFactory {
 
   @Inject
   private CampaignBackAction campaignBackAction;
+  @Inject
+  private CampaignBackingAction campaignBackingAction;
   
   @Inject
   private LoginRedirectAction loginRedirectAction;
@@ -39,6 +41,7 @@ public class ActionFactory {
     actions.put("GET/campaigns/details", campaignDetailAction);
     actions.put("GET/campaigns/fund/", campaignFundAction);
     actions.put("POST/campaigns/back/", campaignBackAction);
+    actions.put("GET/campaigns/backing/", campaignBackingAction);
     actions.put("LoginRedirect", loginRedirectAction);
   }
 

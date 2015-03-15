@@ -32,7 +32,7 @@ public class Campaign extends BaseEntity {
   private BigDecimal backed;
   private Integer noBackers;
   private BigDecimal pledged;
-  private Double percentageFunded;
+  private Integer percentageFunded;
   
   private String formatedEndDate;
 
@@ -40,12 +40,12 @@ public class Campaign extends BaseEntity {
 
   
   
-  public Double getPercentageFunded() {
+  public Integer getPercentageFunded() {
     return percentageFunded;
   }
   
 
-  public void setPercentageFunded(Double amount) {
+  public void setPercentageFunded(Integer amount) {
     this.percentageFunded = amount;
   }
 
