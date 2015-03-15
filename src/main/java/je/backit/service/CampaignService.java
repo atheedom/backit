@@ -15,11 +15,11 @@ import je.backit.utils.TimeLeft;
 @RequestScoped
 public class CampaignService implements Service<Campaign, Integer> {
 
-//   @Inject
-//   CampaignDAO campaignDAO;
+   @Inject
+   CampaignDAO campaignDAO;
 
-  @Inject
-  MOCKCampaignDAO campaignDAO;
+//  @Inject
+//  MOCKCampaignDAO campaignDAO;
 
   @Override
   public List<Campaign> getAll() {
