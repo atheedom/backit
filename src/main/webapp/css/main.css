@@ -7,6 +7,9 @@
     margin-left: 40px;
     text-align: left;
 }
+#social-area #social li {
+    text-align: center;
+}
 #social-area ol, #social-area ul  {
     margin-left: 30px;
 }
