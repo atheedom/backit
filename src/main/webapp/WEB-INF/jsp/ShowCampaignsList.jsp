@@ -48,21 +48,21 @@
                     <p><a href="${pageContext.request.contextPath}/v1/campaigns/details/?campaignId=${campaign.id}">${campaign.summary}</a></p>
                         
 
-            <c:if test="${empty campaign.timeLeft.timeLeftAsString}">                           
-		            <c:choose>
-		        			<c:when test="${campaign.percentageFunded <= 100}">		        			
-		        				<div class="campaign-funding failed">	       			
-		        			</c:when>
-		       		 		<c:when test="${campaign.percentageFunded == 100}">
-		       		 			<div class="campaign-funding successful">
-		       		 		</c:when>
-					</c:choose>
-            </c:if>
+<%--             <c:if test="${empty campaign.timeLeft.timeLeftAsString}">                            --%>
+<%-- 		            <c:choose> --%>
+<%-- 		        			<c:when test="${campaign.percentageFunded < 100}">		        			 --%>
+<!-- 		        				<div class="campaign-funding failed">	       			 -->
+<%-- 		        			</c:when> --%>
+<%-- 		       		 		<c:when test="${campaign.percentageFunded >= 100}"> --%>
+<!-- 		       		 			<div class="campaign-funding successful"> -->
+<%-- 		       		 		</c:when> --%>
+<%-- 					</c:choose> --%>
+<%--             </c:if> --%>
             
-                   <c:if test="${campaign.timeLeft.timeLeftAsString != '0'}">                           
+<%--                    <c:if test="${campaign.timeLeft.timeLeftAsString != 0}">                            --%>
        
                <div class="campaign-funding">
-                        </c:if>
+<%--                         </c:if> --%>
             
       
                             
