@@ -5,8 +5,8 @@ values  (
 '2015-03-14T22:47:00Z',
 '2015-05-31T12:00:00Z',
 10000,
-'/img/archisle.jpg',
-'/video/archisle.mov',
+'inter-island-lock-in-image.jpg',
+'inter-island-lock-in-image.jpg',
 '<h3>What is the Archisle Project?</h3>
 <p>Archisle #3 is our third biennial open call exhibition. Expanding upon the success of the first and second editions in 2011 and 2013 this event gives Jersey and international photographers a crucial opportunity to participate in a group exhibition to present their ideas to an audience. Since its inception in 2011, Archisle has been working hard to develop critical awareness and original thinking in contemporary photography. The evidence that these objectives are being achieved is overwhelming. Jersey photography students, in particular, are producing exciting new work with a number of participants in Archisle''s educational programme progressing to art and photography studies at university. Archisle #3 takes place at a fascinating time when new ideas, techniques and the local and international are coming together to express contemporary experiences through the medium of photography with Jersey as their creative destination. The 2013 edition received over 650 submissions from which 47 images by 25 photographers were presented by Jersey and international photographers. Award winners Amandine Crozat (Paris) and Paula Gortazar (Madrid) travelled to Jersey for the opening. Other international exhibitors also attended the opening. Overall this fast growing event continues to put Jersey and the Channel Islands as creative communities on the map.</p>
 <p>The Archisle #2 Online gallery can be accessed at: <a href="http://www.archisle.org.je/archisle-2/">http://www.archisle.org.je/archisle-2/</a></p>
@@ -40,10 +40,5 @@ VALUES(
 '<p>Please contact the Société Jersiaise Photographic Archive to discuss your requirements at: Tel. 01534 633398 or email: <a href="mailto:photoarchive@societe-jersiaise.org">photoarchive@societe-jersiaise.org</a>. We will be delighted to assist you with finding the perfect images to decorate your building and to advise upon the best method of presentation. Businesses pledging £1000 will receive permanent acknowledgement of their contribution on <a href="http://www.societe-jersiaise.org/">www.societe-jersiaise.org</a> and <a href="www.archisle.org.je">www.archisle.org.je</a> . Production costs will be met by the purchaser.</p>',
 1000);
 
-INSERT INTO campaign_reward(campaign_id, reward_id) VALUES
-((select id from campaign where title like '%Archisle%'),
- (select id from reward where title like 'Individual Pledges'));
-
-INSERT INTO campaign_reward(campaign_id, reward_id) VALUES
-((select id from campaign where title like '%Archisle%'),
- (select id from reward where title like 'Company/Business Pledges'));
+INSERT INTO campaign_reward(campaign_id, reward_id)
+(select c.id, r.id from campaign c, reward r where c.title like '%Archisle%' and r.title like '%Pledges%');
