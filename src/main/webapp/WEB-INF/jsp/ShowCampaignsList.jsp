@@ -27,7 +27,8 @@
 
  
 
-<p class="title-description">BackIt connects great projects in our community with people who are passionate about good causes. Crowdfunding pulls multiple individual donations together to achieve big things. You may have heard people say, “they only need a few pounds for a group of people and it’s done”, well that’s what crowdfunding is.</p>
+<p class="title-description">BackIt connects great projects in our community with people who are passionate about good causes.
+ Crowdfunding pulls multiple individual donations together to achieve big things. You may have heard people say, "they only need a few pounds for a group of people and it’s done", well that’s what crowdfunding is.</p>
 
  
 
@@ -35,7 +36,7 @@
 
  
 
-<p class="title-description">Make a difference – BackIt today!</p>
+<p class="title-description">Make a difference - BackIt today!</p>
                 
                 
    
