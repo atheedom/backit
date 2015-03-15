@@ -2,6 +2,7 @@ package je.backit.control;
 
 import java.math.BigDecimal;
 import static java.math.BigDecimal.ZERO;
+import java.math.MathContext;
 import java.sql.Timestamp;
 import java.time.ZoneOffset;
 import java.time.ZonedDateTime;
@@ -67,7 +68,7 @@ public class CampaignDAO extends AbstractDAO<CampaignRecord, Campaign, Integer> 
 
     LOG.info("getPercentFunded with: {}, {}", amountFunded, targetFunding);
 
-    return amountFunded.divide(targetFunding).intValue();
+    return amountFunded.divide(targetFunding, MathContext.DECIMAL32).multiply(new BigDecimal(100)).intValue();
   }
 
   @Override
