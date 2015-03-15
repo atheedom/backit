@@ -2,8 +2,11 @@ package je.backit.entity;
 
 import java.math.BigDecimal;
 import java.time.ZonedDateTime;
+
 import static java.util.Collections.emptyList;
+
 import java.util.List;
+
 import je.backit.jooq.tables.records.RewardRecord;
 import je.backit.utils.TimeLeft;
 
@@ -25,8 +28,21 @@ public class Campaign extends BaseEntity {
   private String timeRemaining;
   private BigDecimal backed;
   private Integer noBackers;
+  private BigDecimal pledged;
+  private Double percentageFunded;
 
   private List<RewardRecord> rewards;
+
+  
+  
+  public Double getPercentageFunded() {
+    return percentageFunded;
+  }
+  
+
+  public void setPercentageFunded(Double amount) {
+    this.percentageFunded = amount;
+  }
 
   public Integer getId() {
     return id;
@@ -162,6 +178,16 @@ public class Campaign extends BaseEntity {
   public void setRewards(List<RewardRecord> rewards) {
     this.rewards = rewards;
   }
+
+  public BigDecimal getPledged() {
+    return pledged;
+  }
+
+  public void setPledged(BigDecimal pledged) {
+    this.pledged = pledged;
+  }
+  
+  
 
 
 }

@@ -20,7 +20,7 @@ public class CampaignDetailAction implements Action {
     Integer campaignId = Integer.valueOf((String) request.getParameter("campaignId"));
 
     // Retrieve data from database
-    request.setAttribute("campaigns", campaignService.getDetails(campaignId));
+    request.setAttribute("campaign", campaignService.getDetails(campaignId));
 
     return "ShowCampaignDetails";
 

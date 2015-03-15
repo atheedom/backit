@@ -31,7 +31,7 @@ public class MOCKCampaignDAO extends AbstractDAO<CampaignRecord, Campaign, Integ
   }
 
   public BigDecimal getAmountFunded(Integer campaignId) {
-    return new BigDecimal(3000);
+    return new BigDecimal(160);
   }
 
   public BigDecimal getTargetFunding(Integer campaignId) {
@@ -39,7 +39,7 @@ public class MOCKCampaignDAO extends AbstractDAO<CampaignRecord, Campaign, Integ
   }
 
   public Double getPercentFunded(Integer campaignId) {
-    return 30d;
+    return 120d;
   }
 
   @Override
@@ -51,12 +51,12 @@ public class MOCKCampaignDAO extends AbstractDAO<CampaignRecord, Campaign, Integ
     cats.add("Sports");
     cats.add("Arts");
     campaign.setCategories(cats);
-    campaign.setDescription("Arts project for poor kids who cant paint");
-    campaign.setEndDate(ZonedDateTime.now());
+    campaign.setDescription("Arts for poor kids who cant and wont paint regardless of the times we sent them to the naughty step. I blame the parents.");
+    campaign.setEndDate(ZonedDateTime.now().plusHours(6));
     campaign.setHashtag("#arts");
-    campaign.setImageURI("arts.jpg");
+    campaign.setImageURI("300x300.jpg");
     campaign.setStartDate(ZonedDateTime.now());
-    campaign.setSummary("Arts for poor kids");
+    campaign.setSummary("Arts for poor kids who cant and wont paint regardless of the times we sent them to the naughty step. I blame the parents.");
     campaign.setTargetFunding(new BigDecimal(2000));
     campaign.setTitle("Poor Kid Art");
     campaign.setType("FUND FOR SHARE");
@@ -75,8 +75,38 @@ public class MOCKCampaignDAO extends AbstractDAO<CampaignRecord, Campaign, Integ
 
     List<Campaign> cams = new ArrayList<> ();
     cams.add(findById(1));
-    cams.add(findById(2));
-    cams.add(findById(3));
+    
+    Campaign campaign = new Campaign();
+    List<String> cats = new ArrayList<> ();
+    cats.add("Sports");
+    cats.add("Arts");
+    campaign.setId(2);
+    campaign.setCategories(cats);
+    campaign.setDescription("Arts for poor kids who cant and wont paint regardless of the times we sent them to the naughty step. I blame the parents.");
+    campaign.setEndDate(ZonedDateTime.now().plusDays(7));
+    campaign.setHashtag("#arts");
+    campaign.setImageURI("300x300.jpg");
+    campaign.setStartDate(ZonedDateTime.now().minusDays(20));
+    campaign.setSummary("Arts for poor kids who cant and wont paint regardless of the times we sent them to the naughty step. I blame the parents.");
+    campaign.setTargetFunding(new BigDecimal(12000));
+    campaign.setTitle("Poor Kid Art");
+    campaign.setType("FUND FOR SHARE");
+    campaign.setVideoURI("");
+    
+    cams.add(campaign);
+    
+    campaign.setId(3);
+    campaign.setEndDate(ZonedDateTime.now().minusDays(4));
+    campaign.setStartDate(ZonedDateTime.now().minusDays(34));
+    campaign.setTargetFunding(new BigDecimal(5000));
+
+    cams.add(campaign);
+    
+    campaign.setId(4);
+    campaign.setEndDate(ZonedDateTime.now().minusDays(9));
+    campaign.setStartDate(ZonedDateTime.now().minusDays(34));
+    campaign.setTargetFunding(new BigDecimal(55000));
+    
     cams.add(findById(4));
 
     return cams;
