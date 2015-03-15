@@ -43,7 +43,7 @@
             <section class="listings">
               	<c:forEach items="${campaigns}" var="campaign">  
                 <div class="campaign-listing">
-                    <a href=""><img src="${pageContext.request.contextPath}/img/${campaign.imageURI}" alt=""></a>
+                    <a href="${pageContext.request.contextPath}/v1/campaigns/details/?campaignId=${campaign.id}"><img src="${pageContext.request.contextPath}/img/${campaign.imageURI}" alt=""></a>
                     <h3><a href="${pageContext.request.contextPath}/v1/campaigns/details/?campaignId=${campaign.id}">${campaign.title}</a></h3>
                     <p><a href="${pageContext.request.contextPath}/v1/campaigns/details/?campaignId=${campaign.id}">${campaign.summary}</a></p>
                         

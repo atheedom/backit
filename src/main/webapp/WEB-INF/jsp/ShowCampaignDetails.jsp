@@ -27,11 +27,11 @@
             <section id="projects">
                 <!-- Title Page -->
                 <div class="section-title">
-                    <h1 class="title">Project Name<span>.</span></h1>
+                    <h1 class="title">${campaign.title}<span>.</span></h1>
                 </div>
 
                 <div class="project-img">
-                    <img src="${pageContext.request.contextPath}/img/300x300.jpg">
+                    <img src="${pageContext.request.contextPath}/img/${campaign.videoURI}">
                 </div>
 
                 <div class="project-funding">
@@ -66,7 +66,7 @@
                                 <li><strong>&pound;${campaign.pledged}</strong> <span>Pledged</span></li>
                                 <li><strong>&pound;${campaign.targetFunding}</strong> <span>Target</span></li>
                                 <li><strong>${campaign.percentageFunded}%</strong> <span>Backed</span></li>
-                                <li><strong>${campaign.timeRemaining}</strong> <span>Days Left</span></li>
+                                <li><strong>${campaign.timeLeft.timeLeftAsString}</strong> <span>${campaign.timeLeft.unitAsString}</span></li>
                             </ul>
                         </div>                        
                         <p>This campaign concludes at: ${campaign.formatedEndDate}.</p>
