@@ -76,7 +76,7 @@
                 </div>
 
                 <form class="backit-but">
-                    <button class="button">Back This Project</button>
+                    <button class="button" disabled>Back This Project</button>
                 </form>
 
 
