@@ -2,7 +2,7 @@
         <header>
 
             <div id="logo">
-                    <a href="" style="background:url(${pageContext.request.contextPath}/img/logo.svg) no-repeat" title="BackIt.je">BackIt.je</a>
+                    <a href="${pageContext.request.contextPath}/v1/campaigns/list/" style="background:url(${pageContext.request.contextPath}/img/logo.svg) no-repeat" title="BackIt.je">BackIt.je</a>
             </div>
 
 

@@ -70,14 +70,26 @@
                             </ul>
                         </div>                        
                         <p>This campaign concludes at: ${campaign.formatedEndDate}.</p>
-
+                 					<form action="" method="POST">
+					  <script
+					    src="https://checkout.stripe.com/checkout.js" class="stripe-button"
+					    data-key="pk_test_6pRNASCoBOKtIshFeQd4XMUh"
+					    data-amount="1200"
+					    data-name="BackIt.je"
+					    data-description="£12.00 Pledge"
+					    data-image="${pageContext.request.contextPath}/img/backitcoin.svg"
+					    data-currency="GBP"
+					    data-panel-label="Pledge"
+					    data-label="Back This Project"
+					    data-bitcoin="true">
+					  </script>
+					</form>   
                     </div>
-                    
+
                 </div>
 
-                <form class="backit-but">
-                    <button class="button" disabled>Back This Project</button>
-                </form>
+   
+
 
 
                 <div class="project-description">
@@ -103,9 +115,24 @@
                         <li><h3>${reward.title}</h3></li>
                         <li><img style="width: 50px; height:50px;" src="${pageContext.request.contextPath}/img/backitcoin.svg"><span>${reward.totalNumber} Backers</span></li>
                         <li><img style="width: 50px; height:50px;" src="${pageContext.request.contextPath}/img/backitcoin.svg"><span>&pound;${reward.value}</span></li>
-                        <li>${reward.description}</li>     
+                        <li>${reward.description}</li>                         
                     </ul>
-                                  	
+                    <br>
+                                                                    					<form action="" method="POST">
+					  <script
+					    src="https://checkout.stripe.com/checkout.js" class="stripe-button"
+					    data-key="pk_test_6pRNASCoBOKtIshFeQd4XMUh"
+					    data-amount="${reward.value}"
+					    data-name="BackIt.je"
+					    data-description="£${reward.value} Pledge"
+					    data-image="${pageContext.request.contextPath}/img/backitcoin.svg"
+					    data-currency="GBP"
+					    data-panel-label="Pledge"
+					    data-label="Back This Project"
+					    data-bitcoin="true">
+					  </script>
+					</form>    
+         	
               </article>
                                   	
                     
