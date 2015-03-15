@@ -27,6 +27,7 @@ public class ActionFactory {
 
   @Inject
   private CampaignBackAction campaignBackAction;
+  
   @Inject
   private CampaignBackingAction campaignBackingAction;
   
@@ -37,6 +38,7 @@ public class ActionFactory {
   @PostConstruct
   public void populateActions() {
     actions.put("GET/campaigns/list/", campaignListAction);
+    actions.put("POST/campaigns/list/", campaignListAction);
     actions.put("GET/campaigns/details/", campaignDetailAction);
     actions.put("GET/campaigns/details", campaignDetailAction);
     actions.put("GET/campaigns/fund/", campaignFundAction);
