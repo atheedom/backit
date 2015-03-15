@@ -22,15 +22,24 @@
             <section id="how-it-works">
                 <!-- Title Page -->
                 <div class="section-title">
-                    <h1 class="title">So how does crowdfunding work?</h1>
-                    <p class="title-description">At Deltra we provide resources for organisations in need of 
-                        support to strengthen their programme and project teams. Our understanding and knowledge 
-                        of the challenges you face as a business is critical to delivering the very best in 
-                        resources to your business.</p>
+                
+                <h1 class="title">We are the crowdfunding platform for Jersey!</h1>
 
-                    <p class="title-description">Our primary focus is to understand your business, your 
-                        needs and tailor a specific delivery plan for you. Our clients include FTSE 250, 
-                        Alternative Investment Market and Small to Medium Enterprises organisations in the UK and Europe.</p>   
+ 
+
+<p class="title-description">BackIt connects great projects in our community with people who are passionate about good causes.
+ Crowdfunding pulls multiple individual donations together to achieve big things. You may have heard people say, 'they only need a few pounds for a group of people and it's done', well that's what crowdfunding is.</p>
+
+ 
+
+<p class="title-description">By keeping it local, your donation can achieve big things here in Jersey. You can back a variety of projects from art, music, heritage and sport.</p>
+
+ 
+
+<p class="title-description">Make a difference - BackIt today!</p>
+                
+                
+   
                 </div>
                 <!-- End Title Page -->
             </section>
@@ -115,7 +124,7 @@
                         </p>
                         <p class="contact-message">
                             <label>Message:</label>
-                            <textarea id="contact_message" placeholder="Type your message here..." name="message" rows="15" cols="40"></textarea>
+                            <textarea id="contact_message" placeholder="Type your message here..." name="message" rows="5" cols="40"></textarea>
                         </p>
                         <p class="contact-submit">
                             <a id="contact-submit" class="submit" type="submit" value="submit">Send Your Email</a>
@@ -133,15 +142,7 @@
                 <ul>
 
                     <li><a href="mailto:hello@backit.je">hello@backit.je</a></li>
-                    <li>
-                        Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
-                        tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
-                        quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
-                        consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse
-                        cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non
-                        proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
-                        
-                    </li>
+             
                 </ul>
             </div>
             </section>

@@ -26,7 +26,7 @@
 			            Remember me on this computer
 			          </label>
 			        </p>
-			        <p class="button submit"><input style="padding: 0;" type="submit" name="commit" value="Login"></p>
+			        <p><button type="submit" class="button">Login</button></p>
 		      	</form>
 		    </div>
 	    </div><!-- End login-content -->
