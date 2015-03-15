@@ -1,15 +1,12 @@
 package je.backit.entity;
 
 import java.math.BigDecimal;
-import java.time.LocalDateTime;
-import java.time.Month;
+import java.text.NumberFormat;
 import java.time.ZonedDateTime;
 import java.time.format.DateTimeFormatter;
-
 import static java.util.Collections.emptyList;
-
 import java.util.List;
-
+import java.util.Locale;
 import je.backit.jooq.tables.records.RewardRecord;
 import je.backit.utils.TimeLeft;
 
@@ -33,17 +30,17 @@ public class Campaign extends BaseEntity {
   private Integer noBackers;
   private BigDecimal pledged;
   private Integer percentageFunded;
-  
+
   private String formatedEndDate;
 
   private List<RewardRecord> rewards;
 
-  
-  
+
+
   public Integer getPercentageFunded() {
     return percentageFunded;
   }
-  
+
 
   public void setPercentageFunded(Integer amount) {
     this.percentageFunded = amount;
@@ -59,6 +56,14 @@ public class Campaign extends BaseEntity {
 
   public BigDecimal getTargetFunding() {
     return targetFunding;
+  }
+
+  public String getTargetFundingAsString() {
+    return formatAsPounds(targetFunding);
+  }
+
+  private String formatAsPounds(BigDecimal amount) {
+    return NumberFormat.getNumberInstance(Locale.UK).format(amount);
   }
 
   public void setTargetFunding(BigDecimal targetFunding) {
@@ -144,7 +149,7 @@ public class Campaign extends BaseEntity {
   public ZonedDateTime getEndDate() {
     return endDate;
   }
-  
+
   public String getFormatedEndDate() {
     DateTimeFormatter format = DateTimeFormatter.ofPattern("MMM d yyyy  hh:mm a");
     return endDate.format(format);
@@ -194,11 +199,15 @@ public class Campaign extends BaseEntity {
     return pledged;
   }
 
+  public String getPledgedAsString() {
+    return formatAsPounds(pledged);
+  }
+
   public void setPledged(BigDecimal pledged) {
     this.pledged = pledged;
   }
-  
-  
+
+
 
 
 }
